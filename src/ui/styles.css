@@ -1,0 +1,54 @@
+@import 'tailwindcss';
+
+/*
+ * Sukoon's own interface practises what it asks of the web:
+ * no motion, high contrast, visible focus, keyboard first.
+ */
+@theme {
+  --color-ink: #101316;
+  --color-ink-soft: #3a4048;
+  --color-paper: #fbfaf7;
+  --color-panel: #ffffff;
+  --color-line: #c9ccd1;
+  --color-accent: #1f5f4a;
+  --color-accent-ink: #ffffff;
+  --color-focus: #1d5fd1;
+  --color-warn: #8a3b00;
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-ink: #f2f3f4;
+    --color-ink-soft: #c3c8cf;
+    --color-paper: #121417;
+    --color-panel: #1b1e22;
+    --color-line: #4a5058;
+    --color-accent: #8fd3b6;
+    --color-accent-ink: #0c1411;
+    --color-focus: #8ab4ff;
+    --color-warn: #ffb77a;
+  }
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  html {
+    color-scheme: light dark;
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+}

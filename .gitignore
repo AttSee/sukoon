@@ -1,0 +1,16 @@
+node_modules
+.output
+.wxt
+test-results
+playwright-report
+bench/.venv
+bench/results/videos
+bench/results/tmp-*
+bench/results/*.log
+bench/results/iris
+*.cfr.mp4
+# IRIS's default output directory at the repository root (bench/results/ is tracked evidence).
+/Results/
+.DS_Store
+# Local tool configuration
+.serena/

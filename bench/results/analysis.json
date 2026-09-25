@@ -1,0 +1,926 @@
+{
+  "test-page-off": {
+    "source": {
+      "mtime": 1790354661.5843031,
+      "size": 2804268
+    },
+    "motionEnergy": {
+      "idle": 0.8182,
+      "scroll": 2.5384,
+      "all": 2.0543,
+      "frames": 626
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 626
+    }
+  },
+  "test-page-on": {
+    "source": {
+      "mtime": 1790354667.8981826,
+      "size": 1101016
+    },
+    "motionEnergy": {
+      "idle": 0.0042,
+      "scroll": 2.719,
+      "all": 2.379,
+      "frames": 620
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 620
+    }
+  },
+  "test-page-css-flash-off": {
+    "source": {
+      "mtime": 1790354674.8569489,
+      "size": 190000
+    },
+    "motionEnergy": {
+      "idle": 18.751,
+      "scroll": 18.7561,
+      "all": 17.7669,
+      "frames": 602
+    },
+    "iris": {
+      "overall": "Fail",
+      "luminanceFailFrames": 564,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 18,
+      "totalFrames": 602
+    }
+  },
+  "test-page-css-flash-on": {
+    "source": {
+      "mtime": 1790354680.8923795,
+      "size": 67755
+    },
+    "motionEnergy": {
+      "idle": 0.0034,
+      "scroll": 0.0,
+      "all": 0.0018,
+      "frames": 564
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 564
+    }
+  },
+  "lenis-off": {
+    "source": {
+      "mtime": 1790354688.7526176,
+      "size": 7941025
+    },
+    "motionEnergy": {
+      "idle": 1.674,
+      "scroll": 7.4229,
+      "all": 4.5707,
+      "frames": 740
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 740
+    }
+  },
+  "lenis-on": {
+    "source": {
+      "mtime": 1790354696.113121,
+      "size": 2495221
+    },
+    "motionEnergy": {
+      "idle": 0.0071,
+      "scroll": 1.1306,
+      "all": 1.088,
+      "frames": 750
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 750
+    }
+  },
+  "gsap-off": {
+    "source": {
+      "mtime": 1790354703.7008626,
+      "size": 3203204
+    },
+    "motionEnergy": {
+      "idle": 0.1393,
+      "scroll": 6.5887,
+      "all": 3.5935,
+      "frames": 749
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 749
+    }
+  },
+  "gsap-on": {
+    "source": {
+      "mtime": 1790354712.3561573,
+      "size": 2079818
+    },
+    "motionEnergy": {
+      "idle": 0.001,
+      "scroll": 3.8382,
+      "all": 1.616,
+      "frames": 946
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 946
+    }
+  },
+  "apple-iphone-off": {
+    "source": {
+      "mtime": 1790354721.7619767,
+      "size": 8564276
+    },
+    "motionEnergy": {
+      "idle": 3.3405,
+      "scroll": 4.5074,
+      "all": 3.006,
+      "frames": 570
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 570
+    }
+  },
+  "apple-iphone-on": {
+    "source": {
+      "mtime": 1790354728.282604,
+      "size": 7641229
+    },
+    "motionEnergy": {
+      "idle": 0.0008,
+      "scroll": 7.5217,
+      "all": 2.9882,
+      "frames": 667
+    },
+    "iris": {
+      "overall": "PassWithWarning",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 22,
+      "totalFrames": 667
+    }
+  },
+  "stripe-off": {
+    "source": {
+      "mtime": 1790354735.7951314,
+      "size": 6812127
+    },
+    "motionEnergy": {
+      "idle": 2.1267,
+      "scroll": 7.9959,
+      "all": 4.7335,
+      "frames": 589
+    },
+    "iris": {
+      "overall": "PassWithWarning",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 28,
+      "totalFrames": 589
+    }
+  },
+  "stripe-on": {
+    "source": {
+      "mtime": 1790354742.5756729,
+      "size": 5280506
+    },
+    "motionEnergy": {
+      "idle": 0.0176,
+      "scroll": 9.0917,
+      "all": 3.6872,
+      "frames": 734
+    },
+    "iris": {
+      "overall": "PassWithWarning",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 49,
+      "totalFrames": 734
+    }
+  },
+  "linear-off": {
+    "source": {
+      "mtime": 1790354749.4506805,
+      "size": 2867607
+    },
+    "motionEnergy": {
+      "idle": 0.8175,
+      "scroll": 2.2707,
+      "all": 1.4836,
+      "frames": 604
+    },
+    "iris": {
+      "overall": "PassWithWarning",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 14,
+      "totalFrames": 604
+    }
+  },
+  "linear-on": {
+    "source": {
+      "mtime": 1790354755.5400748,
+      "size": 2677986
+    },
+    "motionEnergy": {
+      "idle": 0.0003,
+      "scroll": 2.7956,
+      "all": 1.4737,
+      "frames": 756
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 756
+    }
+  },
+  "vercel-off": {
+    "source": {
+      "mtime": 1790354762.749004,
+      "size": 1996248
+    },
+    "motionEnergy": {
+      "idle": 0.0003,
+      "scroll": 2.46,
+      "all": 1.167,
+      "frames": 593
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 593
+    }
+  },
+  "vercel-on": {
+    "source": {
+      "mtime": 1790354768.4183848,
+      "size": 1925441
+    },
+    "motionEnergy": {
+      "idle": 0.0007,
+      "scroll": 2.1955,
+      "all": 0.9657,
+      "frames": 672
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 672
+    }
+  },
+  "awwwards-off": {
+    "source": {
+      "mtime": 1790354775.1797476,
+      "size": 2501315
+    },
+    "motionEnergy": {
+      "idle": 0.0007,
+      "scroll": 2.0252,
+      "all": 1.6233,
+      "frames": 870
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 870
+    }
+  },
+  "awwwards-on": {
+    "source": {
+      "mtime": 1790354782.931372,
+      "size": 2159118
+    },
+    "motionEnergy": {
+      "idle": 0.0007,
+      "scroll": 2.1274,
+      "all": 1.0666,
+      "frames": 809
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 809
+    }
+  },
+  "framer-off": {
+    "source": {
+      "mtime": 1790354790.9913712,
+      "size": 4657130
+    },
+    "motionEnergy": {
+      "idle": 0.6228,
+      "scroll": 3.9161,
+      "all": 2.0228,
+      "frames": 794
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 794
+    }
+  },
+  "framer-on": {
+    "source": {
+      "mtime": 1790354799.135848,
+      "size": 2231336
+    },
+    "motionEnergy": {
+      "idle": 0.3862,
+      "scroll": 1.5606,
+      "all": 0.5239,
+      "frames": 1099
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 1099
+    }
+  },
+  "webflow-off": {
+    "source": {
+      "mtime": 1790354810.505968,
+      "size": 6987439
+    },
+    "motionEnergy": {
+      "idle": 0.1618,
+      "scroll": 6.8725,
+      "all": 2.2842,
+      "frames": 952
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 952
+    }
+  },
+  "webflow-on": {
+    "source": {
+      "mtime": 1790354819.7052846,
+      "size": 3494681
+    },
+    "motionEnergy": {
+      "idle": 0.0007,
+      "scroll": 5.4022,
+      "all": 1.4952,
+      "frames": 1136
+    },
+    "iris": {
+      "overall": "PassWithWarning",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 36,
+      "totalFrames": 1136
+    }
+  },
+  "locomotive-off": {
+    "source": {
+      "mtime": 1790354830.0923216,
+      "size": 6621144
+    },
+    "motionEnergy": {
+      "idle": 1.0394,
+      "scroll": 7.2581,
+      "all": 4.5883,
+      "frames": 653
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 653
+    }
+  },
+  "locomotive-on": {
+    "source": {
+      "mtime": 1790354837.159987,
+      "size": 4228337
+    },
+    "motionEnergy": {
+      "idle": 2.0092,
+      "scroll": 4.5013,
+      "all": 3.4069,
+      "frames": 727
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 727
+    }
+  },
+  "lottiefiles-off": {
+    "source": {
+      "mtime": 1790354843.9248686,
+      "size": 692950
+    },
+    "motionEnergy": {
+      "idle": 0.0455,
+      "scroll": 1.0594,
+      "all": 0.579,
+      "frames": 535
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 535
+    }
+  },
+  "lottiefiles-on": {
+    "source": {
+      "mtime": 1790354849.1411264,
+      "size": 524333
+    },
+    "motionEnergy": {
+      "idle": 0.0885,
+      "scroll": 0.8969,
+      "all": 0.4604,
+      "frames": 594
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 594
+    }
+  },
+  "swiper-off": {
+    "source": {
+      "mtime": 1790354858.1613767,
+      "size": 6204309
+    },
+    "motionEnergy": {
+      "idle": 0.0076,
+      "scroll": 5.724,
+      "all": 1.2614,
+      "frames": 1543
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 1543
+    }
+  },
+  "swiper-on": {
+    "source": {
+      "mtime": 1790354876.2606337,
+      "size": 4349593
+    },
+    "motionEnergy": {
+      "idle": 0.0076,
+      "scroll": 4.7152,
+      "all": 1.3965,
+      "frames": 1140
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 1140
+    }
+  },
+  "tesla-off": {
+    "source": {
+      "mtime": 1790354887.6065886,
+      "size": 301471
+    },
+    "motionEnergy": {
+      "idle": 0.0001,
+      "scroll": 0.6573,
+      "all": 0.3738,
+      "frames": 503
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 503
+    }
+  },
+  "tesla-on": {
+    "source": {
+      "mtime": 1790354892.4400315,
+      "size": 308274
+    },
+    "motionEnergy": {
+      "idle": 0.0001,
+      "scroll": 0.6697,
+      "all": 0.3628,
+      "frames": 568
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 568
+    }
+  },
+  "nike-off": {
+    "source": {
+      "mtime": 1790354900.3320282,
+      "size": 1774533
+    },
+    "motionEnergy": {
+      "idle": 1.4112,
+      "scroll": 0.0001,
+      "all": 0.1622,
+      "frames": 1351
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 1351
+    }
+  },
+  "nike-on": {
+    "source": {
+      "mtime": 1790354914.1678739,
+      "size": 1423095
+    },
+    "motionEnergy": {
+      "idle": 0.0001,
+      "scroll": 0.5225,
+      "all": 0.1805,
+      "frames": 1174
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 1174
+    }
+  },
+  "airbnb-off": {
+    "source": {
+      "mtime": 1790354925.762345,
+      "size": 1881375
+    },
+    "motionEnergy": {
+      "idle": 0.0539,
+      "scroll": 1.5298,
+      "all": 0.75,
+      "frames": 632
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 632
+    }
+  },
+  "airbnb-on": {
+    "source": {
+      "mtime": 1790354933.2859764,
+      "size": 1982186
+    },
+    "motionEnergy": {
+      "idle": 0.0008,
+      "scroll": 1.4864,
+      "all": 0.5825,
+      "frames": 820
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 820
+    }
+  },
+  "bbc-news-off": {
+    "source": {
+      "mtime": 1790354943.6523325,
+      "size": 5173791
+    },
+    "motionEnergy": {
+      "idle": 0.0005,
+      "scroll": 8.7121,
+      "all": 3.1971,
+      "frames": 800
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 800
+    }
+  },
+  "bbc-news-on": {
+    "source": {
+      "mtime": 1790354954.7283013,
+      "size": 4923493
+    },
+    "motionEnergy": {
+      "idle": 0.4106,
+      "scroll": 7.3537,
+      "all": 2.8827,
+      "frames": 828
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 828
+    }
+  },
+  "the-verge-off": {
+    "source": {
+      "mtime": 1790354966.9376798,
+      "size": 6210425
+    },
+    "motionEnergy": {
+      "idle": 0.0732,
+      "scroll": 6.9191,
+      "all": 1.8069,
+      "frames": 1078
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 1078
+    }
+  },
+  "the-verge-on": {
+    "source": {
+      "mtime": 1790354982.2390642,
+      "size": 6441552
+    },
+    "motionEnergy": {
+      "idle": 0.0,
+      "scroll": 7.3117,
+      "all": 1.4529,
+      "frames": 1420
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 1420
+    }
+  },
+  "github-off": {
+    "source": {
+      "mtime": 1790354998.5811687,
+      "size": 5024992
+    },
+    "motionEnergy": {
+      "idle": 0.3008,
+      "scroll": 3.9427,
+      "all": 3.0598,
+      "frames": 700
+    },
+    "iris": {
+      "overall": "PassWithWarning",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 24,
+      "totalFrames": 700
+    }
+  },
+  "github-on": {
+    "source": {
+      "mtime": 1790355008.4323652,
+      "size": 2778506
+    },
+    "motionEnergy": {
+      "idle": 0.0732,
+      "scroll": 4.7565,
+      "all": 2.1291,
+      "frames": 722
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 722
+    }
+  },
+  "mdn-off": {
+    "source": {
+      "mtime": 1790355018.0018697,
+      "size": 4064943
+    },
+    "motionEnergy": {
+      "idle": 0.0402,
+      "scroll": 4.7033,
+      "all": 3.855,
+      "frames": 581
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 581
+    }
+  },
+  "mdn-on": {
+    "source": {
+      "mtime": 1790355025.9811552,
+      "size": 3031527
+    },
+    "motionEnergy": {
+      "idle": 0.0006,
+      "scroll": 4.0652,
+      "all": 2.7123,
+      "frames": 552
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 552
+    }
+  },
+  "wikipedia-off": {
+    "source": {
+      "mtime": 1790355033.3051176,
+      "size": 4064515
+    },
+    "motionEnergy": {
+      "idle": 1.0558,
+      "scroll": 3.8663,
+      "all": 2.4198,
+      "frames": 492
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 492
+    }
+  },
+  "wikipedia-on": {
+    "source": {
+      "mtime": 1790355041.6588514,
+      "size": 5555365
+    },
+    "motionEnergy": {
+      "idle": 0.0015,
+      "scroll": 4.1272,
+      "all": 1.1051,
+      "frames": 1085
+    },
+    "iris": {
+      "overall": "Pass",
+      "luminanceFailFrames": 0,
+      "luminanceExtendedFailFrames": 0,
+      "redFailFrames": 0,
+      "redExtendedFailFrames": 0,
+      "warningFrames": 0,
+      "totalFrames": 1085
+    }
+  }
+}

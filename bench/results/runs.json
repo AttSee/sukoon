@@ -1,0 +1,2210 @@
+{
+  "seconds": 15,
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "createdAt": "2026-09-25T16:44:19.421Z",
+  "records": [
+    {
+      "site": "test-page",
+      "url": "http://127.0.0.1:4173/?bench",
+      "condition": "off",
+      "ok": true,
+      "domContentLoadedMs": 159,
+      "phases": {
+        "idle": [
+          [
+            0.3,
+            4.3
+          ],
+          [
+            16.8,
+            19.8
+          ]
+        ],
+        "scroll": [
+          4.3,
+          16.8
+        ]
+      },
+      "lcpMs": 220,
+      "video": "bench/results/videos/test-page-off.webm",
+      "sliProbe": 38
+    },
+    {
+      "site": "test-page",
+      "url": "http://127.0.0.1:4173/?bench",
+      "condition": "on",
+      "ok": true,
+      "domContentLoadedMs": 84,
+      "phases": {
+        "idle": [
+          [
+            0.8,
+            4.8
+          ],
+          [
+            16.4,
+            19.4
+          ]
+        ],
+        "scroll": [
+          4.8,
+          16.4
+        ]
+      },
+      "lcpMs": 180,
+      "sli": {
+        "before": {
+          "score": 46,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 14,
+            "scrollLinked": 25,
+            "autoAdvance": 6.7,
+            "flashRisk": 0
+          }
+        },
+        "after": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "beforeObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 1,
+          "animatedImages": 1,
+          "autoMediaArea": 0.05766059027777778,
+          "parallaxLayers": 3,
+          "scrollTimelines": 2,
+          "scrollHijack": true,
+          "autoAdvancing": 2,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "afterObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "active": true
+      },
+      "video": "bench/results/videos/test-page-on.webm"
+    },
+    {
+      "site": "test-page-css-flash",
+      "url": "http://127.0.0.1:4173/?bench=flash",
+      "condition": "off",
+      "ok": true,
+      "domContentLoadedMs": 54,
+      "phases": {
+        "idle": [
+          [
+            0.2,
+            4.2
+          ],
+          [
+            16.3,
+            19.3
+          ]
+        ],
+        "scroll": [
+          4.2,
+          16.3
+        ]
+      },
+      "lcpMs": 164,
+      "video": "bench/results/videos/test-page-css-flash-off.webm",
+      "sliProbe": 71
+    },
+    {
+      "site": "test-page-css-flash",
+      "url": "http://127.0.0.1:4173/?bench=flash",
+      "condition": "on",
+      "ok": true,
+      "domContentLoadedMs": 105,
+      "phases": {
+        "idle": [
+          [
+            0.6,
+            4.6
+          ],
+          [
+            14.7,
+            17.7
+          ]
+        ],
+        "scroll": [
+          4.6,
+          14.7
+        ]
+      },
+      "lcpMs": 132,
+      "sli": {
+        "before": {
+          "score": 77,
+          "breakdown": {
+            "continuous": 25,
+            "autoMedia": 0,
+            "scrollLinked": 25,
+            "autoAdvance": 6.7,
+            "flashRisk": 20
+          }
+        },
+        "after": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "beforeObservation": {
+          "infiniteAnimations": 5,
+          "infiniteAnimationArea": 1,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 3,
+          "scrollTimelines": 2,
+          "scrollHijack": true,
+          "autoAdvancing": 2,
+          "fastFlashAnimations": 2,
+          "flashGuardHit": false
+        },
+        "afterObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "active": true
+      },
+      "video": "bench/results/videos/test-page-css-flash-on.webm"
+    },
+    {
+      "site": "lenis",
+      "url": "https://lenis.darkroom.engineering/",
+      "condition": "off",
+      "ok": true,
+      "domContentLoadedMs": 2247,
+      "phases": {
+        "idle": [
+          [
+            4.2,
+            8.2
+          ],
+          [
+            20.7,
+            23.7
+          ]
+        ],
+        "scroll": [
+          8.2,
+          20.7
+        ]
+      },
+      "lcpMs": 2256,
+      "video": "bench/results/videos/lenis-off.webm",
+      "sliProbe": 15
+    },
+    {
+      "site": "lenis",
+      "url": "https://lenis.darkroom.engineering/",
+      "condition": "on",
+      "ok": true,
+      "domContentLoadedMs": 1317,
+      "phases": {
+        "idle": [
+          [
+            3.2,
+            7.2
+          ],
+          [
+            19.4,
+            22.4
+          ]
+        ],
+        "scroll": [
+          7.2,
+          19.4
+        ]
+      },
+      "lcpMs": 1432,
+      "sli": {
+        "before": {
+          "score": 28,
+          "breakdown": {
+            "continuous": 2.5,
+            "autoMedia": 0,
+            "scrollLinked": 25,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "after": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "beforeObservation": {
+          "infiniteAnimations": 1,
+          "infiniteAnimationArea": 0.008898244698842367,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 13,
+          "scrollTimelines": 0,
+          "scrollHijack": true,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "afterObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "active": true
+      },
+      "video": "bench/results/videos/lenis-on.webm"
+    },
+    {
+      "site": "gsap",
+      "url": "https://gsap.com/",
+      "condition": "off",
+      "ok": true,
+      "domContentLoadedMs": 3703,
+      "phases": {
+        "idle": [
+          [
+            7.2,
+            11.2
+          ],
+          [
+            22,
+            25
+          ]
+        ],
+        "scroll": [
+          11.2,
+          22
+        ]
+      },
+      "lcpMs": 6428,
+      "video": "bench/results/videos/gsap-off.webm",
+      "sliProbe": 45
+    },
+    {
+      "site": "gsap",
+      "url": "https://gsap.com/",
+      "condition": "on",
+      "ok": true,
+      "domContentLoadedMs": 6112,
+      "phases": {
+        "idle": [
+          [
+            13.5,
+            17.5
+          ],
+          [
+            26.9,
+            29.9
+          ]
+        ],
+        "scroll": [
+          17.5,
+          26.9
+        ]
+      },
+      "lcpMs": 6192,
+      "sli": {
+        "before": {
+          "score": 4,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 3.8,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "after": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "beforeObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 1,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "afterObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "active": true
+      },
+      "video": "bench/results/videos/gsap-on.webm"
+    },
+    {
+      "site": "apple-iphone",
+      "url": "https://www.apple.com/iphone/",
+      "condition": "off",
+      "ok": true,
+      "domContentLoadedMs": 4030,
+      "phases": {
+        "idle": [
+          [
+            4.5,
+            8.5
+          ],
+          [
+            18.5,
+            21.5
+          ]
+        ],
+        "scroll": [
+          8.5,
+          18.5
+        ]
+      },
+      "lcpMs": 4472,
+      "video": "bench/results/videos/apple-iphone-off.webm",
+      "sliProbe": 35
+    },
+    {
+      "site": "apple-iphone",
+      "url": "https://www.apple.com/iphone/",
+      "condition": "on",
+      "ok": true,
+      "domContentLoadedMs": 2525,
+      "phases": {
+        "idle": [
+          [
+            4.4,
+            8.4
+          ],
+          [
+            17.2,
+            20.2
+          ]
+        ],
+        "scroll": [
+          8.4,
+          17.2
+        ]
+      },
+      "lcpMs": 3456,
+      "sli": {
+        "before": {
+          "score": 10,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 10,
+            "flashRisk": 0
+          }
+        },
+        "after": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "beforeObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 15,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "afterObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "active": true
+      },
+      "video": "bench/results/videos/apple-iphone-on.webm"
+    },
+    {
+      "site": "stripe",
+      "url": "https://stripe.com/",
+      "condition": "off",
+      "ok": true,
+      "domContentLoadedMs": 2785,
+      "phases": {
+        "idle": [
+          [
+            3.4,
+            7.4
+          ],
+          [
+            17.9,
+            20.9
+          ]
+        ],
+        "scroll": [
+          7.4,
+          17.9
+        ]
+      },
+      "lcpMs": 2192,
+      "video": "bench/results/videos/stripe-off.webm",
+      "sliProbe": 6
+    },
+    {
+      "site": "stripe",
+      "url": "https://stripe.com/",
+      "condition": "on",
+      "ok": true,
+      "domContentLoadedMs": 5456,
+      "phases": {
+        "idle": [
+          [
+            6,
+            10
+          ],
+          [
+            19.4,
+            22.4
+          ]
+        ],
+        "scroll": [
+          10,
+          19.4
+        ]
+      },
+      "lcpMs": 3676,
+      "sli": {
+        "before": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "after": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "beforeObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "afterObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "active": true
+      },
+      "video": "bench/results/videos/stripe-on.webm"
+    },
+    {
+      "site": "linear",
+      "url": "https://linear.app/",
+      "condition": "off",
+      "ok": true,
+      "domContentLoadedMs": 1201,
+      "phases": {
+        "idle": [
+          [
+            3.1,
+            7.1
+          ],
+          [
+            18,
+            21
+          ]
+        ],
+        "scroll": [
+          7.1,
+          18
+        ]
+      },
+      "lcpMs": 3628,
+      "video": "bench/results/videos/linear-off.webm",
+      "sliProbe": 4
+    },
+    {
+      "site": "linear",
+      "url": "https://linear.app/",
+      "condition": "on",
+      "ok": true,
+      "domContentLoadedMs": 1276,
+      "phases": {
+        "idle": [
+          [
+            4,
+            8
+          ],
+          [
+            17.4,
+            20.4
+          ]
+        ],
+        "scroll": [
+          8,
+          17.4
+        ]
+      },
+      "lcpMs": 3504,
+      "sli": {
+        "before": {
+          "score": 25,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 25,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "after": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "beforeObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 16,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "afterObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "active": true
+      },
+      "video": "bench/results/videos/linear-on.webm"
+    },
+    {
+      "site": "vercel",
+      "url": "https://vercel.com/",
+      "condition": "off",
+      "ok": true,
+      "domContentLoadedMs": 2695,
+      "phases": {
+        "idle": [
+          [
+            4,
+            8
+          ],
+          [
+            16.8,
+            19.8
+          ]
+        ],
+        "scroll": [
+          8,
+          16.8
+        ]
+      },
+      "lcpMs": 2704,
+      "video": "bench/results/videos/vercel-off.webm",
+      "sliProbe": 0
+    },
+    {
+      "site": "vercel",
+      "url": "https://vercel.com/",
+      "condition": "on",
+      "ok": true,
+      "domContentLoadedMs": 3112,
+      "phases": {
+        "idle": [
+          [
+            4.7,
+            8.7
+          ],
+          [
+            17.5,
+            20.5
+          ]
+        ],
+        "scroll": [
+          8.7,
+          17.5
+        ]
+      },
+      "lcpMs": 3116,
+      "sli": {
+        "before": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "after": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "beforeObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "afterObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "active": true
+      },
+      "video": "bench/results/videos/vercel-on.webm"
+    },
+    {
+      "site": "awwwards",
+      "url": "https://www.awwwards.com/",
+      "condition": "off",
+      "ok": true,
+      "domContentLoadedMs": 8202,
+      "phases": {
+        "idle": [
+          [
+            10.8,
+            14.8
+          ],
+          [
+            24.2,
+            27.2
+          ]
+        ],
+        "scroll": [
+          14.8,
+          24.2
+        ]
+      },
+      "lcpMs": 8652,
+      "video": "bench/results/videos/awwwards-off.webm",
+      "sliProbe": 0
+    },
+    {
+      "site": "awwwards",
+      "url": "https://www.awwwards.com/",
+      "condition": "on",
+      "ok": true,
+      "domContentLoadedMs": 6887,
+      "phases": {
+        "idle": [
+          [
+            9.8,
+            13.8
+          ],
+          [
+            22.8,
+            25.9
+          ]
+        ],
+        "scroll": [
+          13.8,
+          22.8
+        ]
+      },
+      "lcpMs": 7324,
+      "sli": {
+        "before": {
+          "score": 5,
+          "breakdown": {
+            "continuous": 5,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "after": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "beforeObservation": {
+          "infiniteAnimations": 2,
+          "infiniteAnimationArea": 0.0004888237847222222,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "afterObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "active": true
+      },
+      "video": "bench/results/videos/awwwards-on.webm"
+    },
+    {
+      "site": "framer",
+      "url": "https://www.framer.com/",
+      "condition": "off",
+      "ok": true,
+      "domContentLoadedMs": 568,
+      "phases": {
+        "idle": [
+          [
+            7.9,
+            12
+          ],
+          [
+            22.6,
+            25.6
+          ]
+        ],
+        "scroll": [
+          12,
+          22.6
+        ]
+      },
+      "lcpMs": 792,
+      "video": "bench/results/videos/framer-off.webm",
+      "sliProbe": 50
+    },
+    {
+      "site": "framer",
+      "url": "https://www.framer.com/",
+      "condition": "on",
+      "ok": true,
+      "domContentLoadedMs": 1136,
+      "phases": {
+        "idle": [
+          [
+            18.1,
+            22.1
+          ],
+          [
+            32.5,
+            35.5
+          ]
+        ],
+        "scroll": [
+          22.1,
+          32.5
+        ]
+      },
+      "lcpMs": 888,
+      "sli": {
+        "before": {
+          "score": 25,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 25,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "after": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "beforeObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 26,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "afterObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "active": true
+      },
+      "video": "bench/results/videos/framer-on.webm"
+    },
+    {
+      "site": "webflow",
+      "url": "https://webflow.com/",
+      "condition": "off",
+      "ok": true,
+      "domContentLoadedMs": 6349,
+      "phases": {
+        "idle": [
+          [
+            14.8,
+            18.8
+          ],
+          [
+            28.7,
+            31.7
+          ]
+        ],
+        "scroll": [
+          18.8,
+          28.7
+        ]
+      },
+      "lcpMs": 3860,
+      "video": "bench/results/videos/webflow-off.webm",
+      "sliProbe": 21
+    },
+    {
+      "site": "webflow",
+      "url": "https://webflow.com/",
+      "condition": "on",
+      "ok": true,
+      "domContentLoadedMs": 13013,
+      "phases": {
+        "idle": [
+          [
+            19.4,
+            23.4
+          ],
+          [
+            32.9,
+            35.9
+          ]
+        ],
+        "scroll": [
+          23.4,
+          32.9
+        ]
+      },
+      "lcpMs": 5664,
+      "sli": {
+        "before": {
+          "score": 10,
+          "breakdown": {
+            "continuous": 2.5,
+            "autoMedia": 0,
+            "scrollLinked": 7.5,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "after": {
+          "score": 3,
+          "breakdown": {
+            "continuous": 2.5,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "beforeObservation": {
+          "infiniteAnimations": 1,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 2,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "afterObservation": {
+          "infiniteAnimations": 1,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "active": true
+      },
+      "video": "bench/results/videos/webflow-on.webm"
+    },
+    {
+      "site": "locomotive",
+      "url": "https://locomotive.ca/en",
+      "condition": "off",
+      "ok": true,
+      "domContentLoadedMs": 1738,
+      "phases": {
+        "idle": [
+          [
+            2.7,
+            6.7
+          ],
+          [
+            18.7,
+            21.7
+          ]
+        ],
+        "scroll": [
+          6.7,
+          18.7
+        ]
+      },
+      "lcpMs": 1340,
+      "video": "bench/results/videos/locomotive-off.webm",
+      "sliProbe": 25
+    },
+    {
+      "site": "locomotive",
+      "url": "https://locomotive.ca/en",
+      "condition": "on",
+      "ok": true,
+      "domContentLoadedMs": 3167,
+      "phases": {
+        "idle": [
+          [
+            4.2,
+            8.2
+          ],
+          [
+            20.2,
+            23.2
+          ]
+        ],
+        "scroll": [
+          8.2,
+          20.2
+        ]
+      },
+      "lcpMs": 300,
+      "sli": {
+        "before": {
+          "score": 13,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 12.5,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "after": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "beforeObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": true,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "afterObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "active": true
+      },
+      "video": "bench/results/videos/locomotive-on.webm"
+    },
+    {
+      "site": "lottiefiles",
+      "url": "https://lottiefiles.com/",
+      "condition": "off",
+      "ok": true,
+      "domContentLoadedMs": 560,
+      "phases": {
+        "idle": [
+          [
+            2.1,
+            6.1
+          ],
+          [
+            15.4,
+            18.4
+          ]
+        ],
+        "scroll": [
+          6.1,
+          15.4
+        ]
+      },
+      "lcpMs": 881,
+      "video": "bench/results/videos/lottiefiles-off.webm",
+      "sliProbe": 0
+    },
+    {
+      "site": "lottiefiles",
+      "url": "https://lottiefiles.com/",
+      "condition": "on",
+      "ok": true,
+      "domContentLoadedMs": 671,
+      "phases": {
+        "idle": [
+          [
+            1.5,
+            5.5
+          ],
+          [
+            14.8,
+            17.8
+          ]
+        ],
+        "scroll": [
+          5.5,
+          14.8
+        ]
+      },
+      "lcpMs": 1081,
+      "sli": {
+        "before": {
+          "score": 10,
+          "breakdown": {
+            "continuous": 10,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "after": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "beforeObservation": {
+          "infiniteAnimations": 4,
+          "infiniteAnimationArea": 0.007220299752504313,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "afterObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "active": true
+      },
+      "video": "bench/results/videos/lottiefiles-on.webm"
+    },
+    {
+      "site": "swiper",
+      "url": "https://swiperjs.com/",
+      "condition": "off",
+      "ok": true,
+      "domContentLoadedMs": 1477,
+      "phases": {
+        "idle": [
+          [
+            34.9,
+            38.9
+          ],
+          [
+            48.4,
+            51.4
+          ]
+        ],
+        "scroll": [
+          38.9,
+          48.4
+        ]
+      },
+      "lcpMs": 1316,
+      "video": "bench/results/videos/swiper-off.webm",
+      "sliProbe": 0
+    },
+    {
+      "site": "swiper",
+      "url": "https://swiperjs.com/",
+      "condition": "on",
+      "ok": true,
+      "domContentLoadedMs": 1684,
+      "phases": {
+        "idle": [
+          [
+            20.4,
+            24.4
+          ],
+          [
+            33,
+            36
+          ]
+        ],
+        "scroll": [
+          24.4,
+          33
+        ]
+      },
+      "lcpMs": 1236,
+      "sli": {
+        "before": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "after": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "beforeObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "afterObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "active": true
+      },
+      "video": "bench/results/videos/swiper-on.webm"
+    },
+    {
+      "site": "tesla",
+      "url": "https://www.tesla.com/",
+      "condition": "off",
+      "ok": true,
+      "domContentLoadedMs": 424,
+      "phases": {
+        "idle": [
+          [
+            0.5,
+            4.5
+          ],
+          [
+            13.8,
+            16.8
+          ]
+        ],
+        "scroll": [
+          4.5,
+          13.8
+        ]
+      },
+      "lcpMs": 436,
+      "video": "bench/results/videos/tesla-off.webm",
+      "sliProbe": 0
+    },
+    {
+      "site": "tesla",
+      "url": "https://www.tesla.com/",
+      "condition": "on",
+      "ok": true,
+      "domContentLoadedMs": 433,
+      "phases": {
+        "idle": [
+          [
+            0.6,
+            4.6
+          ],
+          [
+            13.9,
+            16.9
+          ]
+        ],
+        "scroll": [
+          4.6,
+          13.9
+        ]
+      },
+      "lcpMs": 448,
+      "sli": {
+        "before": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "after": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "beforeObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "afterObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "active": true
+      },
+      "video": "bench/results/videos/tesla-on.webm"
+    },
+    {
+      "site": "nike",
+      "url": "https://www.nike.com/",
+      "condition": "off",
+      "ok": true,
+      "domContentLoadedMs": 3720,
+      "phases": {
+        "idle": [
+          [
+            32,
+            36
+          ],
+          [
+            44.2,
+            47.2
+          ]
+        ],
+        "scroll": [
+          36,
+          44.2
+        ]
+      },
+      "lcpMs": 5844,
+      "video": "bench/results/videos/nike-off.webm",
+      "sliProbe": 0
+    },
+    {
+      "site": "nike",
+      "url": "https://www.nike.com/",
+      "condition": "on",
+      "ok": true,
+      "domContentLoadedMs": 3647,
+      "phases": {
+        "idle": [
+          [
+            21.7,
+            25.7
+          ],
+          [
+            34.1,
+            37.1
+          ]
+        ],
+        "scroll": [
+          25.7,
+          34.1
+        ]
+      },
+      "lcpMs": 5140,
+      "sli": {
+        "before": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "after": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "beforeObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "afterObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "active": true
+      },
+      "video": "bench/results/videos/nike-on.webm"
+    },
+    {
+      "site": "airbnb",
+      "url": "https://www.airbnb.com/",
+      "condition": "off",
+      "ok": true,
+      "domContentLoadedMs": 4429,
+      "phases": {
+        "idle": [
+          [
+            4.9,
+            8.9
+          ],
+          [
+            18.1,
+            21.1
+          ]
+        ],
+        "scroll": [
+          8.9,
+          18.1
+        ]
+      },
+      "lcpMs": 7964,
+      "video": "bench/results/videos/airbnb-off.webm",
+      "sliProbe": 0
+    },
+    {
+      "site": "airbnb",
+      "url": "https://www.airbnb.com/",
+      "condition": "on",
+      "ok": true,
+      "domContentLoadedMs": 4991,
+      "phases": {
+        "idle": [
+          [
+            9.8,
+            13.8
+          ],
+          [
+            23.1,
+            26.1
+          ]
+        ],
+        "scroll": [
+          13.8,
+          23.1
+        ]
+      },
+      "lcpMs": 5016,
+      "sli": {
+        "before": {
+          "score": 8,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 7.5,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "after": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "beforeObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 2,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "afterObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "active": true
+      },
+      "video": "bench/results/videos/airbnb-on.webm"
+    },
+    {
+      "site": "bbc-news",
+      "url": "https://www.bbc.com/news",
+      "condition": "off",
+      "ok": true,
+      "domContentLoadedMs": 5880,
+      "phases": {
+        "idle": [
+          [
+            10.5,
+            14.5
+          ],
+          [
+            23.7,
+            26.7
+          ]
+        ],
+        "scroll": [
+          14.5,
+          23.7
+        ]
+      },
+      "lcpMs": 1988,
+      "video": "bench/results/videos/bbc-news-off.webm",
+      "sliProbe": 0
+    },
+    {
+      "site": "bbc-news",
+      "url": "https://www.bbc.com/news",
+      "condition": "on",
+      "ok": true,
+      "domContentLoadedMs": 6441,
+      "phases": {
+        "idle": [
+          [
+            10.4,
+            14.4
+          ],
+          [
+            23.5,
+            26.5
+          ]
+        ],
+        "scroll": [
+          14.4,
+          23.5
+        ]
+      },
+      "lcpMs": 2604,
+      "sli": {
+        "before": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "after": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "beforeObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "afterObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "active": true
+      },
+      "video": "bench/results/videos/bbc-news-on.webm"
+    },
+    {
+      "site": "the-verge",
+      "url": "https://www.theverge.com/",
+      "condition": "off",
+      "ok": true,
+      "domContentLoadedMs": 2738,
+      "phases": {
+        "idle": [
+          [
+            19.7,
+            23.7
+          ],
+          [
+            32.5,
+            35.5
+          ]
+        ],
+        "scroll": [
+          23.7,
+          32.5
+        ]
+      },
+      "lcpMs": 1840,
+      "video": "bench/results/videos/the-verge-off.webm",
+      "sliProbe": 0
+    },
+    {
+      "site": "the-verge",
+      "url": "https://www.theverge.com/",
+      "condition": "on",
+      "ok": true,
+      "domContentLoadedMs": 9371,
+      "phases": {
+        "idle": [
+          [
+            30.7,
+            34.7
+          ],
+          [
+            43.3,
+            46.3
+          ]
+        ],
+        "scroll": [
+          34.7,
+          43.3
+        ]
+      },
+      "lcpMs": 2368,
+      "sli": {
+        "before": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "after": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "beforeObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "afterObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "active": true
+      },
+      "video": "bench/results/videos/the-verge-on.webm"
+    },
+    {
+      "site": "github",
+      "url": "https://github.com/",
+      "condition": "off",
+      "ok": true,
+      "domContentLoadedMs": 3545,
+      "phases": {
+        "idle": [
+          [
+            3.6,
+            7.6
+          ],
+          [
+            17.8,
+            20.8
+          ]
+        ],
+        "scroll": [
+          7.6,
+          17.8
+        ]
+      },
+      "lcpMs": 1660,
+      "video": "bench/results/videos/github-off.webm",
+      "sliProbe": 18
+    },
+    {
+      "site": "github",
+      "url": "https://github.com/",
+      "condition": "on",
+      "ok": true,
+      "domContentLoadedMs": 7352,
+      "phases": {
+        "idle": [
+          [
+            7.6,
+            11.6
+          ],
+          [
+            20,
+            23
+          ]
+        ],
+        "scroll": [
+          11.6,
+          20
+        ]
+      },
+      "lcpMs": 1844,
+      "sli": {
+        "before": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "after": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "beforeObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "afterObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "active": true
+      },
+      "video": "bench/results/videos/github-on.webm"
+    },
+    {
+      "site": "mdn",
+      "url": "https://developer.mozilla.org/en-US/",
+      "condition": "off",
+      "ok": true,
+      "domContentLoadedMs": 951,
+      "phases": {
+        "idle": [
+          [
+            1.6,
+            5.6
+          ],
+          [
+            14.5,
+            17.5
+          ]
+        ],
+        "scroll": [
+          5.6,
+          14.5
+        ]
+      },
+      "lcpMs": 2572,
+      "video": "bench/results/videos/mdn-off.webm",
+      "sliProbe": 0
+    },
+    {
+      "site": "mdn",
+      "url": "https://developer.mozilla.org/en-US/",
+      "condition": "on",
+      "ok": true,
+      "domContentLoadedMs": 913,
+      "phases": {
+        "idle": [
+          [
+            1.4,
+            5.4
+          ],
+          [
+            14.3,
+            17.3
+          ]
+        ],
+        "scroll": [
+          5.4,
+          14.3
+        ]
+      },
+      "lcpMs": 1700,
+      "sli": {
+        "before": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "after": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "beforeObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "afterObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "active": true
+      },
+      "video": "bench/results/videos/mdn-on.webm"
+    },
+    {
+      "site": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Special:Random",
+      "condition": "off",
+      "ok": true,
+      "domContentLoadedMs": 1222,
+      "phases": {
+        "idle": [
+          [
+            1.8,
+            5.8
+          ],
+          [
+            14.7,
+            17.7
+          ]
+        ],
+        "scroll": [
+          5.8,
+          14.7
+        ]
+      },
+      "lcpMs": 1240,
+      "video": "bench/results/videos/wikipedia-off.webm",
+      "sliProbe": 0
+    },
+    {
+      "site": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Special:Random",
+      "condition": "on",
+      "ok": true,
+      "domContentLoadedMs": 11664,
+      "phases": {
+        "idle": [
+          [
+            18.1,
+            22.1
+          ],
+          [
+            31.1,
+            34.1
+          ]
+        ],
+        "scroll": [
+          22.1,
+          31.1
+        ]
+      },
+      "lcpMs": 16656,
+      "sli": {
+        "before": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "after": {
+          "score": 0,
+          "breakdown": {
+            "continuous": 0,
+            "autoMedia": 0,
+            "scrollLinked": 0,
+            "autoAdvance": 0,
+            "flashRisk": 0
+          }
+        },
+        "beforeObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "afterObservation": {
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
+          "scrollTimelines": 0,
+          "scrollHijack": false,
+          "autoAdvancing": 0,
+          "fastFlashAnimations": 0,
+          "flashGuardHit": false
+        },
+        "active": true
+      },
+      "video": "bench/results/videos/wikipedia-on.webm"
+    }
+  ]
+}

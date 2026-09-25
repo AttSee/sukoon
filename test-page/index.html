@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sukoon test page</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- A stylesheet that only applies when the user asks for reduced motion (M2, <link media>). -->
+    <link rel="stylesheet" href="calm-only.css" media="(prefers-reduced-motion: reduce)" />
+    <!-- Same server, different origin: exercises the cross-origin re-read (M2). -->
+    <link rel="stylesheet" href="http://localhost:4173/cross-origin.css" />
+  </head>
+  <body>
+    <div id="progress" class="scroll-progress" aria-hidden="true"></div>
+
+    <header class="hero">
+      <div class="parallax-layer" data-speed="0.5" id="parallax-back" aria-hidden="true"></div>
+      <div class="hero-text">
+        <h1>Sukoon test page</h1>
+        <p>
+          Every section below is one kind of motion that Sukoon handles. It is used by the end-to-end tests and the
+          evidence bench. Load it with and without the extension.
+        </p>
+        <p class="note">Nothing on this page flashes unless you start the gated test at the bottom.</p>
+      </div>
+    </header>
+
+    <main>
+      <section id="css-loops">
+        <h2>M1 · Infinite CSS animation</h2>
+        <div class="row">
+          <div class="spinner" id="spinner" aria-label="Loading spinner"></div>
+          <div class="pulse" id="pulse">Pulse</div>
+          <div class="shimmer" id="shimmer">Shimmering banner</div>
+          <span class="blink" id="blink">NEW</span>
+        </div>
+        <div class="fade-in" id="fade-in">This panel fades in once. With Sukoon it is simply there.</div>
+      </section>
+
+      <section id="prm">
+        <h2>M2 · The site's own reduced-motion version</h2>
+        <p class="prm-status" id="prm-css">CSS: full-motion version</p>
+        <p id="prm-js">JS matchMedia: not checked yet</p>
+        <p id="prm-xo">Cross-origin stylesheet: full-motion version</p>
+        <p id="prm-link" class="prm-link">Linked stylesheet with media="(prefers-reduced-motion: reduce)": inactive</p>
+        <picture>
+          <source media="(prefers-reduced-motion: reduce)" srcset="media/still.png" />
+          <img id="picture-img" src="media/spinner.gif" width="160" height="90" alt="Animated picture that has a still alternative" />
+        </picture>
+        <div class="js-motion" id="js-motion">Scripted motion that respects matchMedia</div>
+      </section>
+
+      <section id="deep">
+        <h2>M3 · Shadow DOM and frames</h2>
+        <spinning-badge id="badge"></spinning-badge>
+        <iframe
+          id="frame"
+          title="Animated frame"
+          width="320"
+          height="90"
+          srcdoc="<style>body{margin:0;font:16px system-ui}.b{width:40px;height:40px;background:#1f5f4a;animation:m 1s linear infinite}@keyframes m{to{transform:translateX(240px)}}</style><div class=b id=b></div>"
+        ></iframe>
+      </section>
+
+      <section id="waapi">
+        <h2>M4 · Scripted and SVG animation</h2>
+        <div class="row">
+          <div class="box" id="waapi-loop">WAAPI loop</div>
+          <div class="box" id="waapi-once">WAAPI once</div>
+          <svg id="smil" width="120" height="60" viewBox="0 0 120 60" aria-label="SVG animation">
+            <circle cx="20" cy="30" r="14" fill="#1f5f4a">
+              <animate attributeName="cx" values="20;100;20" dur="2s" repeatCount="indefinite" />
+            </circle>
+          </svg>
+        </div>
+        <marquee id="marquee">Breaking: this ticker scrolls forever.</marquee>
+        <div class="aos-list">
+          <div data-aos="fade-up" class="aos-item">Revealed on scroll (AOS style) 1</div>
+          <div data-aos="fade-up" class="aos-item">Revealed on scroll (AOS style) 2</div>
+        </div>
+      </section>
+
+      <section id="media">
+        <h2>M6 · Media</h2>
+        <video id="video" src="media/loop.webm" autoplay muted loop playsinline width="320" height="180" controls></video>
+        <img id="gif" src="media/spinner.gif" width="160" height="90" alt="Animated GIF" />
+        <button type="button" id="play-btn">Play video (user gesture)</button>
+      </section>
+
+      <section id="scroll">
+        <h2>M5 · Scroll-linked motion</h2>
+        <div class="parallax-wrap">
+          <div class="parallax-layer small" data-speed="0.35" id="parallax-mid" aria-hidden="true"></div>
+          <div class="parallax-layer small alt" data-speed="-0.25" id="parallax-front" aria-hidden="true"></div>
+        </div>
+        <div class="scroll-reveal" id="scroll-reveal">Scroll-driven CSS animation</div>
+        <div class="zoom-widget" id="zoom-widget" aria-label="Wheel-zoom widget (cancels the wheel over itself, like a map or chart)">
+          Wheel-zoom widget: <span id="zoom-level">zoom 0</span>
+        </div>
+        <button type="button" id="to-top">Smooth scroll to top</button>
+        <button type="button" id="view-transition">View transition</button>
+        <p id="vt-target" class="vt">State A</p>
+      </section>
+
+      <section id="flash">
+        <h2>M9 · Flash Guard test (gated)</h2>
+        <p class="warning" role="note">
+          Warning: this test flashes a large mid-grey area five times per second, which fails WCAG 2.3.1. The
+          contrast is deliberately reduced, but do not start it if flashing affects you.
+        </p>
+        <button type="button" id="flash-start">Start reduced-intensity flash test</button>
+        <button type="button" id="flash-stop">Stop</button>
+        <canvas id="flash-canvas" width="640" height="360" aria-label="Flash test area"></canvas>
+      </section>
+
+      <div class="spacer" aria-hidden="true"></div>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

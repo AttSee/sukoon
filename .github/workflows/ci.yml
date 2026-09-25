@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  check:
+    name: Typecheck, unit tests, builds, end-to-end
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Typecheck (TypeScript 7)
+        run: npm run typecheck
+
+      - name: Unit tests (Vitest)
+        run: npm test
+
+      - name: Build Chrome / Edge
+        run: npm run build
+
+      - name: Build Firefox
+        run: npm run build:firefox
+
+      - name: Install Playwright's bundled Chromium
+        run: npx playwright install --with-deps chromium
+
+      # Extensions load in the bundled Chromium's new headless mode (see e2e/fixtures.ts).
+      # The live Flash Guard test skips itself when tab capture is unavailable on the runner.
+      - name: End-to-end tests (Playwright)
+        run: npx playwright test
+
+      - name: Keep failure traces
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-results
+          path: test-results
+          if-no-files-found: ignore
+
+      - name: Store-ready zips
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        run: npm run zip
+
+      - name: Upload zips
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        uses: actions/upload-artifact@v4
+        with:
+          name: sukoon-zips
+          path: .output/*.zip

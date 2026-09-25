@@ -1,0 +1,94 @@
+{
+  "note": "Fixed list for reproducibility. Chosen for a mix of smooth scrolling, parallax, video heroes, sliders and ordinary pages (controls). Edit freely, but publish the list you used.",
+  "sites": [
+    {
+      "name": "test-page",
+      "url": "http://127.0.0.1:4173/?bench"
+    },
+    {
+      "name": "test-page-css-flash",
+      "url": "http://127.0.0.1:4173/?bench=flash"
+    },
+    {
+      "name": "lenis",
+      "url": "https://lenis.darkroom.engineering/"
+    },
+    {
+      "name": "gsap",
+      "url": "https://gsap.com/"
+    },
+    {
+      "name": "apple-iphone",
+      "url": "https://www.apple.com/iphone/"
+    },
+    {
+      "name": "stripe",
+      "url": "https://stripe.com/"
+    },
+    {
+      "name": "linear",
+      "url": "https://linear.app/"
+    },
+    {
+      "name": "vercel",
+      "url": "https://vercel.com/"
+    },
+    {
+      "name": "awwwards",
+      "url": "https://www.awwwards.com/"
+    },
+    {
+      "name": "framer",
+      "url": "https://www.framer.com/"
+    },
+    {
+      "name": "webflow",
+      "url": "https://webflow.com/"
+    },
+    {
+      "name": "locomotive",
+      "url": "https://locomotive.ca/en"
+    },
+    {
+      "name": "lottiefiles",
+      "url": "https://lottiefiles.com/"
+    },
+    {
+      "name": "swiper",
+      "url": "https://swiperjs.com/"
+    },
+    {
+      "name": "tesla",
+      "url": "https://www.tesla.com/"
+    },
+    {
+      "name": "nike",
+      "url": "https://www.nike.com/"
+    },
+    {
+      "name": "airbnb",
+      "url": "https://www.airbnb.com/"
+    },
+    {
+      "name": "bbc-news",
+      "url": "https://www.bbc.com/news"
+    },
+    {
+      "name": "the-verge",
+      "url": "https://www.theverge.com/"
+    },
+    {
+      "name": "github",
+      "url": "https://github.com/"
+    },
+    {
+      "name": "mdn",
+      "url": "https://developer.mozilla.org/en-US/"
+    },
+    {
+      "name": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Special:Random",
+      "randomContent": true
+    }
+  ]
+}

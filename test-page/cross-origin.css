@@ -1,0 +1,13 @@
+/* Loaded from a different origin than the page (localhost vs 127.0.0.1), so cssRules is unreadable. */
+#prm-xo {
+  color: #6b6f75;
+}
+@media (prefers-reduced-motion: reduce) {
+  #prm-xo {
+    color: #1f5f4a;
+    font-weight: 700;
+  }
+  #prm-xo::before {
+    content: 'Calm version active — ';
+  }
+}

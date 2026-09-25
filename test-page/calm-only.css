@@ -1,0 +1,8 @@
+/* Only applies under prefers-reduced-motion: reduce (see the <link media> in index.html). */
+.prm-link {
+  color: #1f5f4a;
+  font-weight: 700;
+}
+.prm-link::after {
+  content: ' — active';
+}

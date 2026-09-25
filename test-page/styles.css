@@ -1,0 +1,250 @@
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  font: 16px/1.5 system-ui, sans-serif;
+  color: #15181c;
+  background: #f6f5f1;
+}
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+section {
+  margin: 48px 0;
+  padding: 24px;
+  background: #fff;
+  border: 1px solid #d5d7da;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.row {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.hero {
+  position: relative;
+  height: 70vh;
+  overflow: hidden;
+  background: linear-gradient(#26473d, #10231d);
+  background-attachment: fixed;
+  color: #fff;
+}
+.hero-text {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 18vh 16px 0;
+}
+.note {
+  opacity: 0.8;
+}
+.parallax-layer {
+  position: absolute;
+  inset: 20% 10% auto auto;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: rgba(143, 211, 182, 0.35);
+}
+.parallax-wrap {
+  position: relative;
+  height: 220px;
+}
+.parallax-layer.small {
+  width: 120px;
+  height: 120px;
+  inset: 40px auto auto 40px;
+  background: #8fd3b6;
+}
+.parallax-layer.small.alt {
+  inset: 60px auto auto 220px;
+  background: #1f5f4a;
+}
+
+/* 1 — infinite loops */
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 6px solid #d5d7da;
+  border-top-color: #1f5f4a;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+.pulse {
+  padding: 12px 20px;
+  background: #e2efe9;
+  border-radius: 8px;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+.shimmer {
+  flex: 1 1 240px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #e2efe9, #ffffff, #e2efe9) 0 0 / 200% 100%;
+  animation: shimmer 1.5s linear infinite;
+}
+.blink {
+  padding: 2px 8px;
+  background: #b3261e;
+  color: #fff;
+  font-weight: 700;
+  animation: blink 0.25s steps(1) infinite alternate;
+}
+.fade-in {
+  margin-top: 16px;
+  padding: 12px;
+  background: #f1f1ec;
+  animation: fade-in 3s ease-out 0.5s both;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes pulse {
+  50% {
+    transform: scale(1.15);
+  }
+}
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+@keyframes blink {
+  to {
+    opacity: 0.1;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+}
+
+/* 2 — the site's calm version */
+.prm-status::after {
+  content: '';
+}
+@media (prefers-reduced-motion: reduce) {
+  .prm-status {
+    color: #1f5f4a;
+    font-weight: 700;
+  }
+  .prm-status::before {
+    content: 'Calm version active — ';
+  }
+}
+@supports (display: grid) {
+  @media screen and (prefers-reduced-motion: reduce) {
+    .js-motion {
+      outline: 3px solid #1f5f4a;
+    }
+  }
+}
+.js-motion {
+  display: inline-block;
+  padding: 8px 12px;
+  background: #e2efe9;
+}
+
+/* 4 — AOS-like reveal */
+.aos-item {
+  margin: 12px 0;
+  padding: 12px;
+  background: #f1f1ec;
+}
+[data-aos] {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.8s, transform 0.8s;
+}
+[data-aos].aos-animate {
+  opacity: 1;
+  transform: none;
+}
+.box {
+  padding: 16px;
+  background: #e2efe9;
+  border-radius: 8px;
+}
+
+/* 5 — scroll-driven animation */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  height: 6px;
+  background: #1f5f4a;
+  transform-origin: 0 50%;
+  animation: grow linear both;
+  animation-timeline: scroll(root);
+}
+.scroll-reveal {
+  padding: 16px;
+  background: #e2efe9;
+  animation: slide-in linear both;
+  animation-timeline: view();
+}
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes slide-in {
+  from {
+    transform: translateX(-60%);
+    opacity: 0.2;
+  }
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 1.2s;
+}
+
+.zoom-widget {
+  margin-top: 16px;
+  padding: 24px 16px;
+  border: 2px dashed #6b6f75;
+  border-radius: 8px;
+  background: #f1f1ec;
+}
+
+.warning {
+  padding: 12px;
+  border: 2px solid #8a3b00;
+  background: #fff4ea;
+}
+#flash-canvas {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  margin-top: 12px;
+  background: #777;
+}
+.spacer {
+  height: 120vh;
+}
+
+/* Bench only: CSS flashing layer (5 flashes per second, reduced-intensity greys).
+   Full viewport, because IRIS judges the change in whole-frame average luminance. */
+.css-flash {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  background: #7c7c7c;
+  animation: css-flash 0.2s steps(1) infinite;
+}
+@keyframes css-flash {
+  50% {
+    background: #b3b3b3;
+  }
+}

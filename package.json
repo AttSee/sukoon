@@ -1,0 +1,46 @@
+{
+  "name": "sukoon",
+  "version": "1.0.0",
+  "description": "Calm motion, flashes and hijacked scrolling on any website — locally, with reproducible evidence.",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "wxt",
+    "dev:firefox": "wxt -b firefox",
+    "build": "wxt build",
+    "build:firefox": "wxt build -b firefox",
+    "zip": "wxt zip && wxt zip -b firefox",
+    "postinstall": "wxt prepare",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm test && npm run build && npm run build:firefox",
+    "test": "vitest run",
+    "test:e2e": "wxt build && playwright test",
+    "test-page": "node bench/serve.ts",
+    "bench": "node bench/run.ts && python3 bench/analyze.py && node bench/report.ts",
+    "bench:breakage": "node bench/breakage.ts && node bench/report.ts",
+    "icons": "node scripts/gen-icons.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^26.6.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@wxt-dev/module-react": "^1.2.2",
+    "axe-core": "^4.13.0",
+    "happy-dom": "^20.14.5",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.0",
+    "vitest": "^5.0.1",
+    "wxt": "^0.21.4"
+  },
+  "dependencies": {
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  }
+}

@@ -1,0 +1,22 @@
+site,content_missing,interaction_broken,notes
+test-page,no,no,auto: text 1249/1250; images 2/2; headings 8/8; scroll ok; form n/a; nav FAIL
+test-page-css-flash,no,no,auto: text 1249/1250; images 2/2; headings 8/8; scroll ok; form n/a; nav FAIL
+lenis,no,no,auto: text 2732/2732; images 9/9; headings 9/9; scroll ok; form n/a; nav ok
+gsap,no,no,auto: text 2450/2467; images 2/2; headings 15/15; scroll ok; form ok; nav ok
+apple-iphone,no,no,auto: text 75526/75526; images 29/29; headings 49/48; scroll ok; form n/a; nav ok
+stripe,no,no,auto: text 14195/14518; images 28/28; headings 25/26; scroll ok; form n/a; nav ok
+linear,no,no,auto: text 9183/8793; images 35/35; headings 14/14; scroll ok; form ok; nav ok
+vercel,no,no,auto: text 665/665; images 5/5; headings 18/18; scroll ok; form n/a; nav ok
+awwwards,yes,no,auto: text 676/676; images 4/6; headings 6/6; scroll ok; form ok; nav ok
+framer,no,no,auto: text 6406/6406; images 66/66; headings 20/20; scroll ok; form ok; nav ok
+webflow,no,no,auto: text 4888/4888; images 77/57; headings 17/17; scroll ok; form ok; nav ok
+locomotive,no,no,auto: text 2001/2001; images 0/0; headings 11/11; scroll ok; form n/a; nav ok
+lottiefiles,no,no,auto: text 261/261; images 0/0; headings 2/2; scroll ok; form n/a; nav FAIL
+swiper,no,no,auto: text 3359/3355; images 149/74; headings 8/8; scroll ok; form n/a; nav ok
+tesla,no,no,auto: text 193/193; images 0/0; headings 1/1; scroll ok; form n/a; nav FAIL
+nike,yes,no,auto: text 4306/4306; images 14/29; headings 15/15; scroll ok; form ok; nav FAIL
+airbnb,no,no,auto: text 1328/1328; images 4/0; headings 4/4; scroll ok; form ok; nav ok
+bbc-news,no,no,auto: text 8028/8028; images 25/25; headings 58/58; scroll ok; form n/a; nav ok
+the-verge,no,no,auto: text 21834/21834; images 97/97; headings 13/13; scroll ok; form n/a; nav ok
+github,no,no,auto: text 5851/5851; images 15/15; headings 20/22; scroll ok; form ok; nav ok
+mdn,no,no,auto: text 4962/4962; images 1/1; headings 13/13; scroll ok; form n/a; nav ok
