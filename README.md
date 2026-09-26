@@ -1,5 +1,8 @@
 # Sukoon — Calm the Web
 
+[![CI](https://github.com/AttSee/sukoon/actions/workflows/ci.yml/badge.svg)](https://github.com/AttSee/sukoon/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-1f5f4a.svg)](LICENSE)
+
 Sukoon is an open-source browser extension that calms motion, flashing and hijacked scrolling on any website. It runs
 entirely on your device, and every number it claims can be reproduced with one command.
 
@@ -31,6 +34,23 @@ differs in four ways that no single free tool combines:
 - **Finish, don't cancel.** Motion jumps to its end state instead of being removed, so content that animates in is
   never left hidden.
 - Every number in the pitch comes from a script in this repository.
+
+## Screenshots
+
+| Popup | Sensory Load Index |
+| --- | --- |
+| ![Popup](docs/screenshots/popup.png) | ![Sensory Load Index in the popup](docs/screenshots/popup-sli.png) |
+
+| Settings | Welcome screen |
+| --- | --- |
+| ![Settings page](docs/screenshots/options.png) | ![Welcome screen](docs/screenshots/welcome.png) |
+
+| Panic freeze |
+| --- |
+| ![Page frozen](docs/screenshots/frozen.png) |
+
+Regenerate them from the built extension with `npm run screenshots` (1280×800, the store format). The listing copy
+and permission justifications for both stores are in [`docs/store-listing.md`](docs/store-listing.md).
 
 ## Install (development build)
 
@@ -205,6 +225,11 @@ npm run test:e2e     # Playwright: the built extension against the test page, pl
 
 The same steps run on every push and pull request through [GitHub Actions](.github/workflows/ci.yml); on the default
 branch the workflow also uploads the store-ready zips as build artifacts.
+
+For debugging, the popup can be opened as a normal tab and pointed at another tab: `popup.html?tab=<tabId>`.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the development loop and how to report a broken site, and
+[CHANGELOG.md](CHANGELOG.md) for what changed in each release.
 
 The end-to-end suite checks each module's acceptance criterion: CSS loops finish and an excluded site is left alone;
 the site's own reduced-motion version turns on (CSS, cross-origin CSS, `<link media>`, `<picture>`, `matchMedia`) and

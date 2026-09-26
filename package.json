@@ -1,10 +1,18 @@
 {
   "name": "sukoon",
   "version": "1.0.0",
-  "description": "Calm motion, flashes and hijacked scrolling on any website — locally, with reproducible evidence.",
+  "description": "Calm motion, flashes and hijacked scrolling on any website \u2014 locally, with reproducible evidence.",
   "private": true,
   "type": "module",
   "license": "MIT",
+  "homepage": "https://github.com/AttSee/sukoon#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AttSee/sukoon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AttSee/sukoon/issues"
+  },
   "engines": {
     "node": ">=24"
   },
@@ -22,7 +30,8 @@
     "test-page": "node bench/serve.ts",
     "bench": "node bench/run.ts && python3 bench/analyze.py && node bench/report.ts",
     "bench:breakage": "node bench/breakage.ts && node bench/report.ts",
-    "icons": "node scripts/gen-icons.ts"
+    "icons": "node scripts/gen-icons.ts",
+    "screenshots": "wxt build && node scripts/screenshots.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",
@@ -32,7 +41,6 @@
     "@types/react-dom": "^19.3.0",
     "@wxt-dev/module-react": "^1.2.2",
     "axe-core": "^4.13.0",
-    "happy-dom": "^20.14.5",
     "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2",
     "vite": "^8.3.0",

@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Not a medical device
+    url: https://github.com/AttSee/sukoon#readme
+    about: Sukoon reduces exposure to motion and flash triggers; it cannot guarantee protection from any symptom.

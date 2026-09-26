@@ -1,0 +1,39 @@
+name: Site breakage
+description: A website lost content or stopped working with Sukoon on.
+labels: [breakage]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: Page URL
+      placeholder: https://example.com/page
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Mode
+      options: [Vestibular, Photosensitive, Focus]
+    validations:
+      required: true
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      options: [Chrome, Edge, Firefox, Other]
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What is missing or broken?
+      description: Text or images that disappeared, a menu, carousel, video or form that stopped working, scrolling that fails.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Already tried
+      options:
+        - label: The page works with Sukoon turned off for this site (popup switch).
+        - label: Turning off "Parallax freeze" or "Scroll guard" in the settings fixes it.

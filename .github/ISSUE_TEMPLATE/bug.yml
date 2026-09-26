@@ -1,0 +1,21 @@
+name: Bug
+description: Something in Sukoon itself misbehaves (popup, settings, panic freeze, Flash Guard).
+labels: [bug]
+body:
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected, and what happened instead
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Browser and Sukoon version
+      placeholder: Chrome 130, Sukoon 1.0.0

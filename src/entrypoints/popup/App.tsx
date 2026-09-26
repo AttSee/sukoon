@@ -21,7 +21,10 @@ export function App() {
   const [panicMessage, setPanicMessage] = useState('');
 
   useEffect(() => {
-    void browser.tabs.query({ active: true, currentWindow: true }).then(([t]) => {
+    // Opened as a tab for development or screenshots (popup.html?tab=<id>), the popup can be pointed at a tab.
+    const forcedTab = Number(new URLSearchParams(location.search).get('tab'));
+    const activeTab = forcedTab > 0 ? browser.tabs.get(forcedTab).then((t) => [t]) : browser.tabs.query({ active: true, currentWindow: true });
+    void activeTab.then(([t]) => {
       if (t?.id === undefined) return;
       let host: string | null = null;
       try {
