@@ -13,6 +13,8 @@ npm install
 npm run dev              # Chrome, with hot reload (WXT)
 npm run check            # typecheck + unit tests + both builds
 npm run test:e2e         # Playwright against the built extension and the test page
+LIVE=1 npx playwright test e2e/live-sites.spec.ts
+                         # same checks on public motion-heavy sites (not in CI)
 npm run test-page        # http://127.0.0.1:4173/ — every module has a section there
 ```
 

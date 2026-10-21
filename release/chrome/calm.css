@@ -1,0 +1,29 @@
+/* Sukoon calm layer — generated from src/shared/calm-css.ts */
+:root:not([data-sukoon-paused]), :root:not([data-sukoon-paused]) *, :root:not([data-sukoon-paused]) *::before, :root:not([data-sukoon-paused]) *::after, :root:not([data-sukoon-paused]) *::marker {
+  animation-duration: 0.01ms !important;
+  animation-delay: 0s !important;
+  animation-iteration-count: 1 !important;
+  animation-timeline: auto !important;
+  transition-duration: 0.01ms !important;
+  transition-delay: 0s !important;
+  scroll-behavior: auto !important;
+  background-attachment: scroll !important;
+}
+:root:not([data-sukoon-paused])::view-transition-group(*), :root:not([data-sukoon-paused])::view-transition-old(*), :root:not([data-sukoon-paused])::view-transition-new(*) {
+  animation: none !important;
+}
+:root:not([data-sukoon-paused]) [data-aos], :root:not([data-sukoon-paused]) .wow, :root:not([data-sukoon-paused]) [data-sal] {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+:root:not([data-sukoon-paused]) [data-sukoon-still] {
+  transform: none !important;
+  translate: none !important;
+}
+:root[data-sukoon-soften]:not([data-sukoon-paused]) :is(video, canvas, iframe) {
+  filter: contrast(0.85) saturate(0.8) !important;
+}
+:root[data-sukoon-flash-dim] :is(video, canvas, img, iframe, svg, [style*="background-image"]) {
+  filter: brightness(0.35) contrast(0.6) grayscale(1) !important;
+}

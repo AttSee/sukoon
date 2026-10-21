@@ -25,6 +25,12 @@ Publish the result as it comes out.
 | Form-field focus | works without Sukoon, fails with it |
 | Main navigation present | present without Sukoon, missing with it |
 
+A break has to reproduce to count. Some pages serve very different content from one load to the next (nike.com showed
+29 visible images in one load without Sukoon and 7 in the next), so a single pair of loads can look broken by chance.
+A site that looks broken is loaded again in both conditions and reported broken only if the second pair breaks too;
+its notes end with `reproduced on a second pair of loads` or `… did not reproduce`. If the confirming loads fail, the
+first verdict stands.
+
 Limits: live sites differ slightly between any two loads (hence the noise floors); carousel buttons and video play
 buttons are not exercised automatically; sites whose content differs by design (`randomContent` in `bench/sites.json`,
 e.g. a random Wikipedia article) are skipped instead of guessed. Rows are merged by site: a manual verdict for one

@@ -7,6 +7,14 @@ export type Mode = 'vestibular' | 'photosensitive' | 'focus';
 
 export type ImageAnimation = 'none' | 'once' | 'allowed';
 
+export type Locale = 'en' | 'ar';
+
+export type PageChip = 'briefly' | 'on' | 'off';
+
+export const LOCALES: readonly Locale[] = ['en', 'ar'];
+
+export const PAGE_CHIPS: readonly PageChip[] = ['briefly', 'on', 'off'];
+
 /** Every independently switchable protection. Numbers refer to the plan's modules. */
 export interface Features {
   /** M1 — calm stylesheet injected before first paint. */
@@ -39,6 +47,10 @@ export interface Settings {
   /** Hostnames where Sukoon is switched off. */
   excludedHosts: string[];
   onboarded: boolean;
+  /** UI language. English is the default; Arabic is an explicit choice. */
+  locale: Locale;
+  /** On-page calm digest chip. */
+  pageChip: PageChip;
 }
 
 export const MODES: readonly Mode[] = ['vestibular', 'photosensitive', 'focus'];
@@ -91,6 +103,8 @@ export const DEFAULT_SETTINGS: Settings = {
   imageAnimation: 'none',
   excludedHosts: [],
   onboarded: false,
+  locale: 'en',
+  pageChip: 'briefly',
 };
 
 export const SETTINGS_KEY = 'sukoon:settings';
@@ -105,7 +119,7 @@ export function normalizeSettings(value: unknown): Settings {
   return {
     enabled: typeof v.enabled === 'boolean' ? v.enabled : DEFAULT_SETTINGS.enabled,
     mode: MODES.includes(v.mode as Mode) ? (v.mode as Mode) : DEFAULT_SETTINGS.mode,
-    overrides: typeof v.overrides === 'object' && v.overrides !== null ? { ...v.overrides } : {},
+    overrides: normalizeOverrides(v.overrides),
     imageAnimation: (['none', 'once', 'allowed'] as const).includes(v.imageAnimation as ImageAnimation)
       ? (v.imageAnimation as ImageAnimation)
       : DEFAULT_SETTINGS.imageAnimation,
@@ -113,7 +127,22 @@ export function normalizeSettings(value: unknown): Settings {
       ? [...new Set(v.excludedHosts.filter((h): h is string => typeof h === 'string' && h.length > 0))]
       : [],
     onboarded: v.onboarded === true,
+    locale: LOCALES.includes(v.locale as Locale) ? (v.locale as Locale) : DEFAULT_SETTINGS.locale,
+    pageChip: PAGE_CHIPS.includes(v.pageChip as PageChip) ? (v.pageChip as PageChip) : DEFAULT_SETTINGS.pageChip,
   };
+}
+
+/** Imported or older settings must never replace a feature flag with a non-boolean. */
+function normalizeOverrides(value: unknown): Partial<Features> {
+  if (typeof value !== 'object' || value === null || Array.isArray(value)) return {};
+  const overrides: Partial<Features> = {};
+  for (const key of Object.keys(OFF) as FeatureKey[]) {
+    if (Object.hasOwn(value, key)) {
+      const flag = (value as Record<string, unknown>)[key];
+      if (typeof flag === 'boolean') overrides[key] = flag;
+    }
+  }
+  return overrides;
 }
 
 export function isHostExcluded(settings: Settings, host: string): boolean {
@@ -134,12 +163,16 @@ function isValidHost(host: string): boolean {
 export interface PageConfig {
   active: boolean;
   features: Features;
+  locale: Locale;
+  pageChip: PageChip;
 }
 
 export function pageConfigFor(settings: Settings, host: string): PageConfig {
   return {
     active: settings.enabled && !isHostExcluded(settings, host),
     features: resolveFeatures(settings),
+    locale: settings.locale,
+    pageChip: settings.pageChip,
   };
 }
 

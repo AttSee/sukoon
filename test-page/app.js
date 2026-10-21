@@ -65,6 +65,17 @@
     },
     { passive: false },
   );
+  // The same kind of widget drawn on a <canvas> (a 3D viewer, a map): the guard must still let it have the wheel,
+  // even while a page-wide hijacker is active.
+  window.__canvasWidgetWheels = 0;
+  $('canvas-widget').addEventListener(
+    'wheel',
+    (e) => {
+      e.preventDefault();
+      window.__canvasWidgetWheels++;
+    },
+    { passive: false },
+  );
   // Plain page-level wheel listener (analytics-style, never cancels): must keep seeing wheel events.
   window.__pageWheels = 0;
   window.addEventListener('wheel', () => window.__pageWheels++, { passive: true });
@@ -115,7 +126,9 @@
         if (e.ctrlKey) return;
         e.preventDefault();
         target = Math.max(0, Math.min(document.documentElement.scrollHeight - innerHeight, target + e.deltaY));
-        window.__hijackedWheels = (window.__hijackedWheels || 0) + 1;
+        // SLI measurement and burst detection also dispatch synthetic probes. Count real wheel input separately.
+        if (e.isTrusted) window.__hijackedWheels = (window.__hijackedWheels || 0) + 1;
+        else window.__hijackProbes = (window.__hijackProbes || 0) + 1;
         if (!animating) {
           animating = true;
           const step = () => {

@@ -1,4 +1,5 @@
 import { defineConfig } from '@playwright/test';
+import { TEST_PAGE, TEST_PORT } from './e2e/server';
 
 export default defineConfig({
   testDir: './e2e',
@@ -9,8 +10,8 @@ export default defineConfig({
   retries: process.env.CI ? 1 : 0,
   reporter: [['list']],
   webServer: {
-    command: 'node bench/serve.ts 4173',
-    url: 'http://127.0.0.1:4173/',
-    reuseExistingServer: true,
+    command: `node bench/serve.ts ${TEST_PORT}`,
+    url: TEST_PAGE,
+    reuseExistingServer: false,
   },
 });

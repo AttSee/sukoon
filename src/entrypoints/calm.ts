@@ -5,11 +5,13 @@
  */
 import { browser } from 'wxt/browser';
 import { defineUnlistedScript } from 'wxt/utils/define-unlisted-script';
+import { DigestChip } from '../content/chip';
 import { DomAdapters } from '../content/dom-adapters';
 import { FlashDimmer, PanicFreeze } from '../content/freeze';
 import { ParallaxFreezer } from '../content/parallax';
 import { ReducedMotionRewriter } from '../content/prm-rewriter';
 import { measureSli } from '../content/sli-observer';
+import { digestFacts } from '../shared/digest';
 import { PAUSED_ATTR, SOFTEN_ATTR } from '../shared/calm-css';
 import {
   BRIDGE,
@@ -55,6 +57,7 @@ export default defineUnlistedScript(() => {
     // The Restore button lives in the top frame; the background lifts the dim in every frame.
     void browser.runtime.sendMessage({ type: 'flash-restore' } satisfies ToBackground).catch(() => {});
   });
+  const chip = new DigestChip();
 
   // Who started each video: needed by the SLI to tell autoplay from the user's own choice.
   const selfStarted = new Set<HTMLVideoElement>();
@@ -84,13 +87,19 @@ export default defineUnlistedScript(() => {
     config = pageConfigFor(settings, host);
     emit(BRIDGE.config, config);
     const { active, features: f } = config;
+    panic.setLocale(config.locale);
+    flash.setLocale(config.locale);
+    chip.setOptions(config.locale, config.pageChip);
     setRootAttr(PAUSED_ATTR, !(active && f.calmCss));
     setRootAttr(SOFTEN_ATTR, active && f.softenVideo);
     if (active && f.reducedMotionSwitch) rewriter.start();
     else rewriter.stop();
     parallax.setFreeze(active && f.parallaxFreeze);
     if (active) runAdapters();
-    else adapters.undo();
+    else {
+      adapters.undo();
+      chip.hide();
+    }
   }
 
   let adaptTimer = 0;
@@ -177,10 +186,28 @@ export default defineUnlistedScript(() => {
       sweep();
       // Libraries often initialise a little after load.
       setTimeout(sweep, 1500);
+      setTimeout(() => {
+        sweep();
+        showChip();
+      }, 1800);
       setTimeout(sweep, 4000);
     },
     { once: true },
   );
+
+  function showChip(): void {
+    if (!config.active || window !== window.top) return;
+    const report = sliReport();
+    chip.show(
+      digestFacts({
+        before: report.beforeObservation,
+        after: report.afterObservation,
+        active: report.active,
+        siteCalmVersion: report.active && config.features.reducedMotionSwitch,
+        videosWaiting: Math.max(0, (queryMainWorld()?.blockedPlays ?? 0) || report.beforeObservation.autoplayingVideos - report.afterObservation.autoplayingVideos),
+      }),
+    );
+  }
 
   // ── Messages ───────────────────────────────────────────────────────────
   browser.runtime.onMessage.addListener((raw: unknown, _sender, sendResponse: (r: unknown) => void) => {

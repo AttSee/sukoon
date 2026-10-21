@@ -4,7 +4,9 @@ node_modules
 test-results
 playwright-report
 bench/.venv
+bench/__pycache__
 bench/results/videos
+bench/results/live
 bench/results/tmp-*
 bench/results/*.log
 bench/results/iris

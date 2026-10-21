@@ -20,6 +20,7 @@ import {
   type ImageAnimation,
   type Settings,
 } from '../shared/settings';
+import { pageStrings } from '../shared/page-strings';
 
 const IS_CHROME = import.meta.env.BROWSER !== 'firefox';
 const SCRIPT_IDS = { main: 'sukoon-main', calm: 'sukoon-calm' } as const;
@@ -141,7 +142,7 @@ async function readSettings(): Promise<Settings> {
 let syncQueue: Promise<void> = Promise.resolve();
 function syncAll(): Promise<void> {
   // Serialise: rapid toggles must not interleave unregister/register calls.
-  syncQueue = syncQueue.then(async () => {
+  syncQueue = syncQueue.catch((e: unknown) => console.error('[sukoon] settings sync', e)).then(async () => {
     const settings = await readSettings();
     await syncRegistration(settings).catch((e: unknown) => console.error('[sukoon] registration', e));
     await applyImagePolicy(settings.enabled ? settings.imageAnimation : 'allowed').catch((e: unknown) =>
@@ -149,6 +150,7 @@ function syncAll(): Promise<void> {
     );
     // Tab-scoped badges (frozen, Flash Guard) are untouched by the global default.
     await setBadge(settings.enabled ? null : BADGE.off).catch(() => {});
+    await createMenus(settings).catch((e: unknown) => console.error('[sukoon] menus', e));
   });
   return syncQueue;
 }
@@ -173,12 +175,14 @@ async function toggleHost(host: string): Promise<void> {
   await browser.storage.local.set({ [SETTINGS_KEY]: { ...settings, excludedHosts } });
 }
 
-async function createMenus(): Promise<void> {
+async function createMenus(settings?: Settings): Promise<void> {
+  const locale = (settings ?? (await readSettings())).locale;
+  const menus = pageStrings(locale).menus;
   try {
     await browser.contextMenus.removeAll();
-    await browser.contextMenus.create({ id: MENU.panic, title: 'Freeze this page', contexts: ['page'] });
-    await browser.contextMenus.create({ id: MENU.toggleSite, title: 'Turn Sukoon off / on for this site', contexts: ['page'] });
-    await browser.contextMenus.create({ id: MENU.options, title: 'Open Sukoon settings', contexts: ['action'] });
+    await browser.contextMenus.create({ id: MENU.panic, title: menus.panic, contexts: ['page'] });
+    await browser.contextMenus.create({ id: MENU.toggleSite, title: menus.toggleSite, contexts: ['page'] });
+    await browser.contextMenus.create({ id: MENU.options, title: menus.options, contexts: ['action'] });
   } catch (e) {
     console.error('[sukoon] menus', e);
   }
@@ -358,10 +362,16 @@ async function ensureOffscreen(): Promise<void> {
 async function sendToOffscreen(message: ToOffscreen): Promise<void> {
   let lastError: unknown = new Error('Flash Guard analyser did not start');
   for (let attempt = 0; attempt < 20; attempt++) {
+    let response: unknown;
     try {
-      if (await browser.runtime.sendMessage(message)) return;
+      response = await browser.runtime.sendMessage(message);
     } catch (e) {
       lastError = e;
+    }
+    if (response === true) return;
+    // A listening analyser that failed capture cannot reuse the single-use stream id.
+    if (response && typeof response === 'object' && 'error' in response) {
+      throw new Error(String(response.error));
     }
     await new Promise((r) => setTimeout(r, 50));
   }
@@ -381,6 +391,7 @@ async function startFlashGuard(tabId: number): Promise<FlashGuardStatus> {
     flash = { running: true, tabId, samples: [], hits: 0 };
     if (!frozenTabs.has(tabId)) void setBadge(BADGE.guard, tabId).catch(() => {});
   } catch (e) {
+    await stopFlashGuard();
     flash = { running: false, tabId: null, samples: [], hits: 0, error: String(e) };
   }
   return flash;

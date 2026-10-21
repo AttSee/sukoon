@@ -35,6 +35,8 @@ export default defineUnlistedScript(() => {
   let config: PageConfig = {
     active: true,
     features: { ...MODE_PRESETS.vestibular, parallaxFreeze: false },
+    locale: 'en',
+    pageChip: 'briefly',
   };
   const on = (feature: keyof PageConfig['features']) => config.active && config.features[feature];
 
@@ -200,6 +202,12 @@ export default defineUnlistedScript(() => {
    *  - any other page-wide hijacker cancels a synthetic zero-delta wheel event
    *    dispatched on <body>. A map, chart or slider that listens on its own
    *    element never sees that event, so widgets cannot trip the guard.
+   *
+   * Over a likely widget (a canvas, a video, an SVG, a map…) the wheel is not
+   * stopped on the way in, so the widget's own listener still gets it; it is
+   * stopped on the way back up instead, before it reaches a hijacker listening
+   * on window (Lenis and Locomotive Scroll do). Letting it through untouched
+   * leaked the hijacker's inertia whenever a decorative canvas was under the cursor.
    */
   const BURST_GAP_MS = 400;
   let lastWheelAt = -Infinity;
@@ -234,21 +242,37 @@ export default defineUnlistedScript(() => {
     '.swiper', '.swiper-container', 'swiper-container', '.slick-slider', '.flickity-enabled', '.owl-carousel',
   ].join(', ');
 
+  /** Wheels over a likely widget: let through on the way in, stopped by the bubble listener below. */
+  const heldForBubble = new WeakSet<Event>();
+
   window.addEventListener(
     'wheel',
     (e) => {
       if (!e.isTrusted || !on('scrollGuard') || e.ctrlKey) return; // ctrl+wheel is pinch-zoom
-      const target = e.target instanceof Element ? e.target : null;
-      if (target?.closest(WHEEL_CONSUMERS)) return;
       const now = performance.now();
       if (now - lastWheelAt > BURST_GAP_MS) hijack = detectHijack();
       lastWheelAt = now;
-      if (hijack) {
-        wheelGuardEngaged = true;
-        e.stopImmediatePropagation(); // page listeners never see it; the browser scrolls natively
+      if (!hijack) return;
+      wheelGuardEngaged = true;
+      const target = e.target instanceof Element ? e.target : null;
+      if (target?.closest(WHEEL_CONSUMERS)) {
+        heldForBubble.add(e); // the widget under the cursor must still get it
+        return;
       }
+      e.stopImmediatePropagation(); // page listeners never see it; the browser scrolls natively
     },
     { capture: true, passive: true },
+  );
+
+  // Also registered at document_start, so it is the first bubble listener on window: it runs after every
+  // element-level widget has handled the wheel, and before a hijacker that listens on window.
+  // The untrusted detection probe is never held, so the hijacker still sees it and can be detected.
+  window.addEventListener(
+    'wheel',
+    (e) => {
+      if (heldForBubble.has(e)) e.stopImmediatePropagation();
+    },
+    { passive: true },
   );
 
   // ── M4: JS-library adapters ──────────────────────────────────────────────

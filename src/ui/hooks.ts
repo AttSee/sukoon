@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { browser } from 'wxt/browser';
-import { normalizeSettings, SETTINGS_KEY, type Settings } from '../shared/settings';
+import { normalizeSettings, SETTINGS_KEY, type Locale, type Settings } from '../shared/settings';
+import { dirOf } from './copy';
 
 export async function loadSettings(): Promise<Settings> {
   const stored = await browser.storage.local.get(SETTINGS_KEY);
@@ -36,4 +37,17 @@ export function useSettings(): [Settings | null, (patch: (s: Settings) => Settin
 
 export function prefersReducedMotion(): boolean {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+export function applyDocumentLocale(locale: Locale, title?: string): void {
+  document.documentElement.lang = locale;
+  document.documentElement.dir = dirOf(locale);
+  if (title) document.title = title;
+}
+
+/** Keeps html lang/dir in sync with the stored locale. */
+export function useDocumentLocale(locale: Locale | undefined, title?: string): void {
+  useEffect(() => {
+    if (locale) applyDocumentLocale(locale, title);
+  }, [locale, title]);
 }

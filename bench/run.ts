@@ -41,8 +41,8 @@ export interface RunRecord {
   sli?: SliReport;
   /** SLI of the page exactly as built: extension loaded with every protection off (measure-only). */
   sliProbe?: number;
-  /** Phase windows in seconds from the start of the recording. */
-  phases?: { idle: [number, number][]; scroll: [number, number] };
+  /** Phase windows in seconds on the wall clock since the page was created (a fallback: see `marked`). */
+  phases?: { idle: [number, number][]; scroll: [number, number]; marked?: boolean };
 }
 
 const args = process.argv.slice(2);
@@ -93,26 +93,55 @@ async function launch(condition: Condition, videoDir: string): Promise<BrowserCo
 
 const IDLE_BEFORE_MS = 4000;
 const IDLE_AFTER_MS = 3000;
+/**
+ * Phase boundaries are marked on screen, not only on the wall clock. Playwright's video timeline is offset from
+ * the wall clock (the recording starts at a first captured frame, up to 1.6 s after the page was created on
+ * stripe.com), which put the first second of wheel scrolling inside the leading idle window and whatever followed
+ * the scenario inside the trailing one. A 128 px two-tone square in the top-left corner is unmistakable at the
+ * analysis resolution (16 px at 160×90) and covers 1.8% of the frame (IRIS only counts changes over 25% of it).
+ * It swaps its tones at every boundary and stays, so every captured frame shows the phase it belongs to: the
+ * recorder only receives frames when the page repaints, and a short flash fell between two captured frames on
+ * pages that were repainting heavily (right after the wheel stops, or while still loading). bench/analyze.py
+ * locates the windows from the frames on which the tones change.
+ */
+async function mark(page: Page, boundary: number): Promise<void> {
+  const tones = boundary % 2 === 0 ? '#000 50%,#fff 50%' : '#fff 50%,#000 50%';
+  await page.evaluate((gradient) => {
+    let el = document.getElementById('sukoon-bench-mark');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'sukoon-bench-mark';
+      el.style.cssText = 'position:fixed;top:0;left:0;width:128px;height:128px;z-index:2147483647;pointer-events:none;';
+      document.documentElement.append(el);
+    }
+    el.style.background = `linear-gradient(to right,${gradient})`;
+  }, tones);
+}
 
 /**
  * The fixed scenario: still, then wheel scrolling, then still again.
  * Motion during the still phases is motion the user did not ask for; the
  * trailing phase also catches smooth-scroll inertia after the wheel stops.
+ * Every boundary is marked on screen; the wall-clock times are kept as a fallback.
  */
 async function scenario(page: Page, since: () => number): Promise<NonNullable<RunRecord['phases']>> {
   await page.mouse.move(VIEWPORT.width / 2, VIEWPORT.height / 2);
+  await mark(page, 0);
   const a0 = since();
   await page.waitForTimeout(IDLE_BEFORE_MS);
   const s0 = since();
+  await mark(page, 1);
   const steps = Math.round(Math.max(0, seconds * 1000 - IDLE_BEFORE_MS - IDLE_AFTER_MS) / 100);
   for (let i = 0; i < steps; i++) {
     await page.mouse.wheel(0, 120);
     await page.waitForTimeout(100);
   }
   const b0 = since();
+  await mark(page, 2);
   await page.waitForTimeout(IDLE_AFTER_MS);
   const b1 = since();
-  return { idle: [[a0, s0], [b0, b1]], scroll: [s0, b0] };
+  await mark(page, 3);
+  return { idle: [[a0, s0], [b0, b1]], scroll: [s0, b0], marked: true };
 }
 
 async function readSli(context: BrowserContext, page: Page): Promise<SliReport | undefined> {
@@ -206,10 +235,8 @@ async function runOne(site: Site, condition: Condition): Promise<RunRecord> {
     const early = condition === 'on' ? await readSli(context, page) : undefined;
     record.phases = await scenario(page, since);
     record.lcpMs = Math.round(await page.evaluate(() => (window as unknown as { __sukoonBench: { lcp: number } }).__sukoonBench.lcp));
-    // Scrollback after the phases close, in both conditions: without it the
-    // scroll-down position (and any lazy content it revealed) differs between
-    // the two recordings and leaks into the trailing idle window.
-    await page.evaluate(() => window.scrollTo(0, 0));
+    // Nothing visible happens after the last marker: reading the SLI opens a hidden tab, and the scrollback that
+    // used to sit here was what the timeline drift (see `mark`) dragged into the trailing idle window.
     if (condition === 'on') {
       const late = await readSli(context, page);
       record.sli = early && late ? (early.before.score >= late.before.score ? early : late) : (late ?? early);

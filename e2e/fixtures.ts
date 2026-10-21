@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 import type { Settings } from '../src/shared/settings';
 
 export const EXTENSION_PATH = fileURLToPath(new URL('../.output/chrome-mv3', import.meta.url));
-export const TEST_PAGE = 'http://127.0.0.1:4173/';
+export { TEST_PAGE } from './server';
 
 /** Extensions only load in Playwright's bundled Chromium, through a persistent context. */
 export async function launchWithExtension(): Promise<{ context: BrowserContext; sw: Worker; extensionId: string }> {

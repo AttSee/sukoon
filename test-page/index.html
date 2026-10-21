@@ -8,7 +8,14 @@
     <!-- A stylesheet that only applies when the user asks for reduced motion (M2, <link media>). -->
     <link rel="stylesheet" href="calm-only.css" media="(prefers-reduced-motion: reduce)" />
     <!-- Same server, different origin: exercises the cross-origin re-read (M2). -->
-    <link rel="stylesheet" href="http://localhost:4173/cross-origin.css" />
+    <script>
+      const crossOrigin = new URL('cross-origin.css', location.href);
+      crossOrigin.hostname = location.hostname === 'localhost' ? '127.0.0.1' : 'localhost';
+      const sheet = document.createElement('link');
+      sheet.rel = 'stylesheet';
+      sheet.href = crossOrigin.href;
+      document.head.append(sheet);
+    </script>
   </head>
   <body>
     <div id="progress" class="scroll-progress" aria-hidden="true"></div>
@@ -97,6 +104,8 @@
         <div class="zoom-widget" id="zoom-widget" aria-label="Wheel-zoom widget (cancels the wheel over itself, like a map or chart)">
           Wheel-zoom widget: <span id="zoom-level">zoom 0</span>
         </div>
+        <canvas class="zoom-widget canvas-widget" id="canvas-widget" width="320" height="120"
+          aria-label="Canvas wheel widget (cancels the wheel over itself, like a 3D viewer or a map drawn on a canvas)"></canvas>
         <button type="button" id="to-top">Smooth scroll to top</button>
         <button type="button" id="view-transition">View transition</button>
         <p id="vt-target" class="vt">State A</p>

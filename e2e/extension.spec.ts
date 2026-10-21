@@ -116,7 +116,7 @@ test('M5: wheel hijack is bypassed, smooth scroll is instant, parallax is frozen
   expect(await page.evaluate(() => window.scrollY)).toBe(0);
 });
 
-test('M5: a hijacker without the Lenis class is bypassed too, and a wheel-zoom widget keeps working', async ({ page }) => {
+test('M5: a hijacker without the Lenis class is bypassed too, and a wheel-zoom widget keeps working', async ({ page, sw }) => {
   await openTestPage(page, '?nolenisclass');
   await page.mouse.move(640, 400);
   for (let i = 0; i < 8; i++) {
@@ -128,9 +128,22 @@ test('M5: a hijacker without the Lenis class is bypassed too, and a wheel-zoom w
     hijacked: (window as unknown as { __hijackedWheels?: number }).__hijackedWheels ?? 0,
     y: window.scrollY,
   }));
-  // The zero-delta probe at the start of the burst is the only event the hijacker ever sees.
-  expect(after.hijacked).toBeLessThanOrEqual(1);
+  // Detection and SLI measurements can send multiple probes; none of the real wheels may leak through.
+  expect(after.hijacked).toBe(0);
   expect(after.y).toBeGreaterThan(500);
+  expect(await page.evaluate(() => (window as unknown as { __hijackProbes?: number }).__hijackProbes ?? 0)).toBeGreaterThan(0);
+
+  // Negative control: the same counter must observe real input when the guard is disabled.
+  await setSettings(sw, { overrides: { scrollGuard: false } });
+  await expect.poll(() => page.evaluate(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    return window.scrollY;
+  })).toBe(0);
+  await page.reload();
+  await page.waitForLoadState('load');
+  await page.mouse.move(640, 400);
+  await page.mouse.wheel(0, 250);
+  await expect.poll(() => page.evaluate(() => (window as unknown as { __hijackedWheels?: number }).__hijackedWheels ?? 0)).toBeGreaterThan(0);
 });
 
 test('M5: the wheel guard leaves a widget that cancels the wheel alone and never latches', async ({ page }) => {
@@ -157,6 +170,40 @@ test('M5: the wheel guard leaves a widget that cancels the wheel alone and never
   const afterCount = await page.evaluate(() => (window as unknown as { __pageWheels: number }).__pageWheels);
   // All three real wheels arrived (the guard's zero-delta probe at the start of the burst may add one more).
   expect(afterCount - before).toBeGreaterThanOrEqual(3);
+});
+
+test('M5: over a canvas the hijacker is still bypassed, while a canvas widget keeps its wheel', async ({ page }) => {
+  // Regression, found on locomotive.ca: a decorative <canvas> under the cursor matched the widget exemption, so the
+  // wheel reached the page-wide hijacker and its smooth-scroll inertia leaked through for about a second.
+  await openTestPage(page); // hijacker on (Lenis class present)
+  const hijacked = () => page.evaluate(() => (window as unknown as { __hijackedWheels?: number }).__hijackedWheels ?? 0);
+
+  // A decorative canvas (no wheel listener of its own): the browser scrolls natively, the hijacker never sees it.
+  const decorative = page.locator('#flash-canvas');
+  await decorative.scrollIntoViewIfNeeded();
+  const deco = (await decorative.boundingBox())!;
+  await page.mouse.move(deco.x + deco.width / 2, deco.y + 40);
+  const yBefore = await page.evaluate(() => window.scrollY);
+  for (let i = 0; i < 3; i++) {
+    await page.mouse.wheel(0, 100);
+    await page.waitForTimeout(60);
+  }
+  await page.waitForTimeout(300);
+  expect(await hijacked()).toBe(0);
+  expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(yBefore);
+
+  // A canvas that uses the wheel itself (a 3D viewer, a map): it still gets every wheel, the hijacker still none.
+  const widget = page.locator('#canvas-widget');
+  await widget.scrollIntoViewIfNeeded();
+  const box = (await widget.boundingBox())!;
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  for (let i = 0; i < 5; i++) {
+    await page.mouse.wheel(0, 100);
+    await page.waitForTimeout(60);
+  }
+  await page.waitForTimeout(300);
+  expect(await page.evaluate(() => (window as unknown as { __canvasWidgetWheels: number }).__canvasWidgetWheels)).toBe(5);
+  expect(await hijacked()).toBe(0);
 });
 
 test('M6: autoplay is stopped; a real click still plays', async ({ page }) => {
@@ -291,6 +338,27 @@ test('UI: toolbar badge reads "off" while paused, and the context menu is presen
   await expect.poll(() => sw.evaluate(async () => chrome.action.getBadgeText({}))).toBe('off');
   await setSettings(sw, { enabled: true });
   await expect.poll(() => sw.evaluate(async () => chrome.action.getBadgeText({}))).toBe('');
+});
+
+test('UI: the default popup stays English; settings can switch to Arabic RTL', async ({ context, page, sw, extensionId }) => {
+  await setSettings(sw, { onboarded: true, locale: 'en' });
+  await openTestPage(page, '?nohijack');
+
+  const popup = await context.newPage();
+  await popup.goto(`chrome-extension://${extensionId}/popup.html`);
+  await popup.waitForSelector('main h1');
+  await expect(popup.locator('html')).toHaveAttribute('lang', 'en');
+  await expect(popup.locator('html')).toHaveAttribute('dir', 'ltr');
+  await expect(popup.locator('main h1')).toHaveText('Sukoon');
+  await expect(popup.getByText('Active on this page')).toBeVisible();
+
+  const options = await context.newPage();
+  await options.goto(`chrome-extension://${extensionId}/options.html`);
+  await options.waitForSelector('main h1');
+  await options.getByRole('radio', { name: 'العربية' }).click();
+  await expect(options.locator('html')).toHaveAttribute('dir', 'rtl');
+  await expect(options.locator('html')).toHaveAttribute('lang', 'ar');
+  await expect(options.locator('main h1')).toHaveText('إعدادات سكون');
 });
 
 test('UI: popup and settings have no serious accessibility violations', async ({ context, extensionId }) => {

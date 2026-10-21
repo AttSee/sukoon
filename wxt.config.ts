@@ -10,7 +10,15 @@ export default defineConfig({
   imports: false,
   zip: {
     // Source archive for Firefox review: code only, no recordings or local environments.
-    excludeSources: ['bench/results/**', 'bench/.venv/**', 'test-results/**', 'playwright-report/**', 'docs/**'],
+    excludeSources: [
+      'bench/results/**',
+      'bench/.venv/**',
+      'bench/__pycache__/**',
+      'test-results/**',
+      'playwright-report/**',
+      'docs/**',
+      'release/**',
+    ],
   },
   vite: () => ({
     plugins: [tailwindcss()],
@@ -49,7 +57,15 @@ export default defineConfig({
           description: 'Turn Sukoon off / on everywhere',
         },
       },
-      action: { default_title: 'Sukoon' },
+      action: {
+        default_title: 'Sukoon',
+        default_icon: {
+          16: 'icon/16.png',
+          32: 'icon/32.png',
+          48: 'icon/48.png',
+          128: 'icon/128.png',
+        },
+      },
       ...(chrome
         ? {}
         : {

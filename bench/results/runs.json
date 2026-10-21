@@ -4,14 +4,23 @@
     "width": 1280,
     "height": 720
   },
-  "createdAt": "2026-09-25T16:44:19.421Z",
+  "createdAt": "2026-09-26T09:17:51.938Z",
   "records": [
     {
       "site": "test-page",
       "url": "http://127.0.0.1:4173/?bench",
       "condition": "off",
+      "ok": false,
+      "domContentLoadedMs": 103,
+      "error": "Error: page.waitForTimeout: Target page, context or browser has been closed",
+      "video": "bench/results/videos/test-page-off.webm"
+    },
+    {
+      "site": "test-page",
+      "url": "http://127.0.0.1:4173/?bench",
+      "condition": "on",
       "ok": true,
-      "domContentLoadedMs": 159,
+      "domContentLoadedMs": 53,
       "phases": {
         "idle": [
           [
@@ -19,51 +28,26 @@
             4.3
           ],
           [
-            16.8,
-            19.8
+            14.5,
+            17.5
           ]
         ],
         "scroll": [
           4.3,
-          16.8
-        ]
-      },
-      "lcpMs": 220,
-      "video": "bench/results/videos/test-page-off.webm",
-      "sliProbe": 38
-    },
-    {
-      "site": "test-page",
-      "url": "http://127.0.0.1:4173/?bench",
-      "condition": "on",
-      "ok": true,
-      "domContentLoadedMs": 84,
-      "phases": {
-        "idle": [
-          [
-            0.8,
-            4.8
-          ],
-          [
-            16.4,
-            19.4
-          ]
+          14.5
         ],
-        "scroll": [
-          4.8,
-          16.4
-        ]
+        "marked": true
       },
-      "lcpMs": 180,
+      "lcpMs": 88,
       "sli": {
         "before": {
-          "score": 46,
+          "score": 44,
           "breakdown": {
-            "continuous": 0,
-            "autoMedia": 14,
-            "scrollLinked": 25,
+            "continuous": 10,
+            "autoMedia": 0,
+            "scrollLinked": 17.5,
             "autoAdvance": 6.7,
-            "flashRisk": 0
+            "flashRisk": 10
           }
         },
         "after": {
@@ -77,16 +61,16 @@
           }
         },
         "beforeObservation": {
-          "infiniteAnimations": 0,
-          "infiniteAnimationArea": 0,
-          "autoplayingVideos": 1,
-          "animatedImages": 1,
-          "autoMediaArea": 0.05766059027777778,
-          "parallaxLayers": 3,
+          "infiniteAnimations": 4,
+          "infiniteAnimationArea": 0.04337117602699436,
+          "autoplayingVideos": 0,
+          "animatedImages": 0,
+          "autoMediaArea": 0,
+          "parallaxLayers": 0,
           "scrollTimelines": 2,
           "scrollHijack": true,
           "autoAdvancing": 2,
-          "fastFlashAnimations": 0,
+          "fastFlashAnimations": 1,
           "flashGuardHit": false
         },
         "afterObservation": {
@@ -111,24 +95,25 @@
       "url": "http://127.0.0.1:4173/?bench=flash",
       "condition": "off",
       "ok": true,
-      "domContentLoadedMs": 54,
+      "domContentLoadedMs": 142,
       "phases": {
         "idle": [
           [
-            0.2,
-            4.2
+            0.9,
+            4.9
           ],
           [
-            16.3,
-            19.3
+            17.7,
+            20.9
           ]
         ],
         "scroll": [
-          4.2,
-          16.3
-        ]
+          4.9,
+          17.7
+        ],
+        "marked": true
       },
-      "lcpMs": 164,
+      "lcpMs": 268,
       "video": "bench/results/videos/test-page-css-flash-off.webm",
       "sliProbe": 71
     },
@@ -137,31 +122,32 @@
       "url": "http://127.0.0.1:4173/?bench=flash",
       "condition": "on",
       "ok": true,
-      "domContentLoadedMs": 105,
+      "domContentLoadedMs": 74,
       "phases": {
         "idle": [
           [
-            0.6,
-            4.6
+            0.7,
+            4.7
           ],
           [
-            14.7,
-            17.7
+            15.1,
+            18.3
           ]
         ],
         "scroll": [
-          4.6,
-          14.7
-        ]
+          4.7,
+          15.1
+        ],
+        "marked": true
       },
-      "lcpMs": 132,
+      "lcpMs": 88,
       "sli": {
         "before": {
-          "score": 77,
+          "score": 69,
           "breakdown": {
             "continuous": 25,
             "autoMedia": 0,
-            "scrollLinked": 25,
+            "scrollLinked": 17.5,
             "autoAdvance": 6.7,
             "flashRisk": 20
           }
@@ -182,7 +168,7 @@
           "autoplayingVideos": 0,
           "animatedImages": 0,
           "autoMediaArea": 0,
-          "parallaxLayers": 3,
+          "parallaxLayers": 0,
           "scrollTimelines": 2,
           "scrollHijack": true,
           "autoAdvancing": 2,
@@ -211,56 +197,58 @@
       "url": "https://lenis.darkroom.engineering/",
       "condition": "off",
       "ok": true,
-      "domContentLoadedMs": 2247,
+      "domContentLoadedMs": 916,
       "phases": {
         "idle": [
           [
-            4.2,
-            8.2
+            3.1,
+            7.1
           ],
           [
-            20.7,
-            23.7
+            19.4,
+            22.6
           ]
         ],
         "scroll": [
-          8.2,
-          20.7
-        ]
+          7.1,
+          19.4
+        ],
+        "marked": true
       },
-      "lcpMs": 2256,
+      "lcpMs": 1072,
       "video": "bench/results/videos/lenis-off.webm",
-      "sliProbe": 15
+      "sliProbe": 16
     },
     {
       "site": "lenis",
       "url": "https://lenis.darkroom.engineering/",
       "condition": "on",
       "ok": true,
-      "domContentLoadedMs": 1317,
+      "domContentLoadedMs": 1148,
       "phases": {
         "idle": [
           [
-            3.2,
-            7.2
+            2.7,
+            6.7
           ],
           [
-            19.4,
-            22.4
+            19.6,
+            22.8
           ]
         ],
         "scroll": [
-          7.2,
-          19.4
-        ]
+          6.7,
+          19.6
+        ],
+        "marked": true
       },
-      "lcpMs": 1432,
+      "lcpMs": 1272,
       "sli": {
         "before": {
-          "score": 28,
+          "score": 45,
           "breakdown": {
-            "continuous": 2.5,
-            "autoMedia": 0,
+            "continuous": 0,
+            "autoMedia": 20,
             "scrollLinked": 25,
             "autoAdvance": 0,
             "flashRisk": 0
@@ -277,11 +265,11 @@
           }
         },
         "beforeObservation": {
-          "infiniteAnimations": 1,
-          "infiniteAnimationArea": 0.008898244698842367,
-          "autoplayingVideos": 0,
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
+          "autoplayingVideos": 2,
           "animatedImages": 0,
-          "autoMediaArea": 0,
+          "autoMediaArea": 0.21110622803370158,
           "parallaxLayers": 13,
           "scrollTimelines": 0,
           "scrollHijack": true,
@@ -311,24 +299,25 @@
       "url": "https://gsap.com/",
       "condition": "off",
       "ok": true,
-      "domContentLoadedMs": 3703,
+      "domContentLoadedMs": 2871,
       "phases": {
         "idle": [
           [
-            7.2,
-            11.2
+            4.6,
+            8.6
           ],
           [
-            22,
-            25
+            19.5,
+            22.7
           ]
         ],
         "scroll": [
-          11.2,
-          22
-        ]
+          8.6,
+          19.5
+        ],
+        "marked": true
       },
-      "lcpMs": 6428,
+      "lcpMs": 5604,
       "video": "bench/results/videos/gsap-off.webm",
       "sliProbe": 45
     },
@@ -337,24 +326,25 @@
       "url": "https://gsap.com/",
       "condition": "on",
       "ok": true,
-      "domContentLoadedMs": 6112,
+      "domContentLoadedMs": 2265,
       "phases": {
         "idle": [
           [
-            13.5,
-            17.5
+            3.4,
+            7.4
           ],
           [
-            26.9,
-            29.9
+            16.8,
+            19.9
           ]
         ],
         "scroll": [
-          17.5,
-          26.9
-        ]
+          7.4,
+          16.8
+        ],
+        "marked": true
       },
-      "lcpMs": 6192,
+      "lcpMs": 2348,
       "sli": {
         "before": {
           "score": 4,
@@ -411,24 +401,25 @@
       "url": "https://www.apple.com/iphone/",
       "condition": "off",
       "ok": true,
-      "domContentLoadedMs": 4030,
+      "domContentLoadedMs": 1875,
       "phases": {
         "idle": [
           [
-            4.5,
-            8.5
+            2.3,
+            6.3
           ],
           [
-            18.5,
-            21.5
+            16.3,
+            19.5
           ]
         ],
         "scroll": [
-          8.5,
-          18.5
-        ]
+          6.3,
+          16.3
+        ],
+        "marked": true
       },
-      "lcpMs": 4472,
+      "lcpMs": 2884,
       "video": "bench/results/videos/apple-iphone-off.webm",
       "sliProbe": 35
     },
@@ -437,24 +428,25 @@
       "url": "https://www.apple.com/iphone/",
       "condition": "on",
       "ok": true,
-      "domContentLoadedMs": 2525,
+      "domContentLoadedMs": 1448,
       "phases": {
         "idle": [
           [
-            4.4,
-            8.4
+            2.5,
+            6.5
           ],
           [
-            17.2,
-            20.2
+            16.1,
+            19.3
           ]
         ],
         "scroll": [
-          8.4,
-          17.2
-        ]
+          6.5,
+          16.1
+        ],
+        "marked": true
       },
-      "lcpMs": 3456,
+      "lcpMs": 2540,
       "sli": {
         "before": {
           "score": 10,
@@ -485,7 +477,7 @@
           "parallaxLayers": 0,
           "scrollTimelines": 0,
           "scrollHijack": false,
-          "autoAdvancing": 15,
+          "autoAdvancing": 12,
           "fastFlashAnimations": 0,
           "flashGuardHit": false
         },
@@ -511,24 +503,25 @@
       "url": "https://stripe.com/",
       "condition": "off",
       "ok": true,
-      "domContentLoadedMs": 2785,
+      "domContentLoadedMs": 1876,
       "phases": {
         "idle": [
           [
-            3.4,
-            7.4
+            2.4,
+            6.4
           ],
           [
-            17.9,
-            20.9
+            17.3,
+            20.5
           ]
         ],
         "scroll": [
-          7.4,
-          17.9
-        ]
+          6.4,
+          17.3
+        ],
+        "marked": true
       },
-      "lcpMs": 2192,
+      "lcpMs": 1416,
       "video": "bench/results/videos/stripe-off.webm",
       "sliProbe": 6
     },
@@ -537,24 +530,25 @@
       "url": "https://stripe.com/",
       "condition": "on",
       "ok": true,
-      "domContentLoadedMs": 5456,
+      "domContentLoadedMs": 1724,
       "phases": {
         "idle": [
           [
-            6,
-            10
+            3.2,
+            7.2
           ],
           [
-            19.4,
-            22.4
+            17.6,
+            20.8
           ]
         ],
         "scroll": [
-          10,
-          19.4
-        ]
+          7.2,
+          17.6
+        ],
+        "marked": true
       },
-      "lcpMs": 3676,
+      "lcpMs": 1128,
       "sli": {
         "before": {
           "score": 0,
@@ -611,50 +605,52 @@
       "url": "https://linear.app/",
       "condition": "off",
       "ok": true,
-      "domContentLoadedMs": 1201,
+      "domContentLoadedMs": 1224,
       "phases": {
         "idle": [
           [
-            3.1,
-            7.1
+            3.3,
+            7.3
           ],
           [
-            18,
-            21
+            18.8,
+            22.1
           ]
         ],
         "scroll": [
-          7.1,
-          18
-        ]
+          7.3,
+          18.8
+        ],
+        "marked": true
       },
-      "lcpMs": 3628,
+      "lcpMs": 3412,
       "video": "bench/results/videos/linear-off.webm",
-      "sliProbe": 4
+      "sliProbe": 19
     },
     {
       "site": "linear",
       "url": "https://linear.app/",
       "condition": "on",
       "ok": true,
-      "domContentLoadedMs": 1276,
+      "domContentLoadedMs": 921,
       "phases": {
         "idle": [
           [
-            4,
-            8
+            2.9,
+            6.9
           ],
           [
             17.4,
-            20.4
+            20.6
           ]
         ],
         "scroll": [
-          8,
+          6.9,
           17.4
-        ]
+        ],
+        "marked": true
       },
-      "lcpMs": 3504,
+      "lcpMs": 1872,
       "sli": {
         "before": {
           "score": 25,
@@ -711,24 +707,25 @@
       "url": "https://vercel.com/",
       "condition": "off",
       "ok": true,
-      "domContentLoadedMs": 2695,
+      "domContentLoadedMs": 923,
       "phases": {
         "idle": [
           [
-            4,
-            8
+            2.1,
+            6.1
           ],
           [
-            16.8,
-            19.8
+            15.4,
+            18.6
           ]
         ],
         "scroll": [
-          8,
-          16.8
-        ]
+          6.1,
+          15.4
+        ],
+        "marked": true
       },
-      "lcpMs": 2704,
+      "lcpMs": 928,
       "video": "bench/results/videos/vercel-off.webm",
       "sliProbe": 0
     },
@@ -737,24 +734,25 @@
       "url": "https://vercel.com/",
       "condition": "on",
       "ok": true,
-      "domContentLoadedMs": 3112,
+      "domContentLoadedMs": 777,
       "phases": {
         "idle": [
           [
-            4.7,
-            8.7
+            3.1,
+            7.1
           ],
           [
-            17.5,
-            20.5
+            17.4,
+            20.6
           ]
         ],
         "scroll": [
-          8.7,
-          17.5
-        ]
+          7.1,
+          17.4
+        ],
+        "marked": true
       },
-      "lcpMs": 3116,
+      "lcpMs": 796,
       "sli": {
         "before": {
           "score": 0,
@@ -811,50 +809,52 @@
       "url": "https://www.awwwards.com/",
       "condition": "off",
       "ok": true,
-      "domContentLoadedMs": 8202,
+      "domContentLoadedMs": 4381,
       "phases": {
         "idle": [
           [
-            10.8,
-            14.8
+            6.8,
+            10.9
           ],
           [
-            24.2,
-            27.2
+            22.2,
+            25.4
           ]
         ],
         "scroll": [
-          14.8,
-          24.2
-        ]
+          10.9,
+          22.2
+        ],
+        "marked": true
       },
-      "lcpMs": 8652,
+      "lcpMs": 4408,
       "video": "bench/results/videos/awwwards-off.webm",
-      "sliProbe": 0
+      "sliProbe": 3
     },
     {
       "site": "awwwards",
       "url": "https://www.awwwards.com/",
       "condition": "on",
       "ok": true,
-      "domContentLoadedMs": 6887,
+      "domContentLoadedMs": 3190,
       "phases": {
         "idle": [
           [
-            9.8,
-            13.8
+            8.7,
+            12.7
           ],
           [
-            22.8,
-            25.9
+            27.1,
+            30.4
           ]
         ],
         "scroll": [
-          13.8,
-          22.8
-        ]
+          12.7,
+          27.1
+        ],
+        "marked": true
       },
-      "lcpMs": 7324,
+      "lcpMs": 3076,
       "sli": {
         "before": {
           "score": 5,
@@ -911,24 +911,25 @@
       "url": "https://www.framer.com/",
       "condition": "off",
       "ok": true,
-      "domContentLoadedMs": 568,
+      "domContentLoadedMs": 872,
       "phases": {
         "idle": [
           [
-            7.9,
-            12
+            4.9,
+            8.9
           ],
           [
-            22.6,
-            25.6
+            21.3,
+            24.5
           ]
         ],
         "scroll": [
-          12,
-          22.6
-        ]
+          8.9,
+          21.3
+        ],
+        "marked": true
       },
-      "lcpMs": 792,
+      "lcpMs": 896,
       "video": "bench/results/videos/framer-off.webm",
       "sliProbe": 50
     },
@@ -937,24 +938,25 @@
       "url": "https://www.framer.com/",
       "condition": "on",
       "ok": true,
-      "domContentLoadedMs": 1136,
+      "domContentLoadedMs": 724,
       "phases": {
         "idle": [
           [
-            18.1,
-            22.1
+            4.9,
+            8.9
           ],
           [
-            32.5,
-            35.5
+            19.6,
+            22.7
           ]
         ],
         "scroll": [
-          22.1,
-          32.5
-        ]
+          8.9,
+          19.6
+        ],
+        "marked": true
       },
-      "lcpMs": 888,
+      "lcpMs": 792,
       "sli": {
         "before": {
           "score": 25,
@@ -982,7 +984,7 @@
           "autoplayingVideos": 0,
           "animatedImages": 0,
           "autoMediaArea": 0,
-          "parallaxLayers": 26,
+          "parallaxLayers": 28,
           "scrollTimelines": 0,
           "scrollHijack": false,
           "autoAdvancing": 0,
@@ -1011,24 +1013,25 @@
       "url": "https://webflow.com/",
       "condition": "off",
       "ok": true,
-      "domContentLoadedMs": 6349,
+      "domContentLoadedMs": 2901,
       "phases": {
         "idle": [
           [
-            14.8,
-            18.8
+            6.8,
+            10.8
           ],
           [
-            28.7,
-            31.7
+            21.5,
+            24.7
           ]
         ],
         "scroll": [
-          18.8,
-          28.7
-        ]
+          10.8,
+          21.5
+        ],
+        "marked": true
       },
-      "lcpMs": 3860,
+      "lcpMs": 2120,
       "video": "bench/results/videos/webflow-off.webm",
       "sliProbe": 21
     },
@@ -1037,24 +1040,25 @@
       "url": "https://webflow.com/",
       "condition": "on",
       "ok": true,
-      "domContentLoadedMs": 13013,
+      "domContentLoadedMs": 2965,
       "phases": {
         "idle": [
           [
-            19.4,
-            23.4
+            9.3,
+            13.4
           ],
           [
-            32.9,
-            35.9
+            24.2,
+            27.4
           ]
         ],
         "scroll": [
-          23.4,
-          32.9
-        ]
+          13.4,
+          24.2
+        ],
+        "marked": true
       },
-      "lcpMs": 5664,
+      "lcpMs": 1872,
       "sli": {
         "before": {
           "score": 10,
@@ -1067,9 +1071,9 @@
           }
         },
         "after": {
-          "score": 3,
+          "score": 0,
           "breakdown": {
-            "continuous": 2.5,
+            "continuous": 0,
             "autoMedia": 0,
             "scrollLinked": 0,
             "autoAdvance": 0,
@@ -1090,7 +1094,7 @@
           "flashGuardHit": false
         },
         "afterObservation": {
-          "infiniteAnimations": 1,
+          "infiniteAnimations": 0,
           "infiniteAnimationArea": 0,
           "autoplayingVideos": 0,
           "animatedImages": 0,
@@ -1111,24 +1115,25 @@
       "url": "https://locomotive.ca/en",
       "condition": "off",
       "ok": true,
-      "domContentLoadedMs": 1738,
+      "domContentLoadedMs": 2230,
       "phases": {
         "idle": [
           [
-            2.7,
-            6.7
+            4.1,
+            8.1
           ],
           [
-            18.7,
-            21.7
+            21,
+            24.2
           ]
         ],
         "scroll": [
-          6.7,
-          18.7
-        ]
+          8.1,
+          21
+        ],
+        "marked": true
       },
-      "lcpMs": 1340,
+      "lcpMs": 1476,
       "video": "bench/results/videos/locomotive-off.webm",
       "sliProbe": 25
     },
@@ -1137,24 +1142,25 @@
       "url": "https://locomotive.ca/en",
       "condition": "on",
       "ok": true,
-      "domContentLoadedMs": 3167,
+      "domContentLoadedMs": 1235,
       "phases": {
         "idle": [
           [
-            4.2,
-            8.2
+            3.2,
+            7.2
           ],
           [
-            20.2,
-            23.2
+            19.6,
+            22.8
           ]
         ],
         "scroll": [
-          8.2,
-          20.2
-        ]
+          7.2,
+          19.6
+        ],
+        "marked": true
       },
-      "lcpMs": 300,
+      "lcpMs": 388,
       "sli": {
         "before": {
           "score": 13,
@@ -1211,24 +1217,25 @@
       "url": "https://lottiefiles.com/",
       "condition": "off",
       "ok": true,
-      "domContentLoadedMs": 560,
+      "domContentLoadedMs": 337,
       "phases": {
         "idle": [
           [
-            2.1,
-            6.1
+            0.9,
+            4.9
           ],
           [
-            15.4,
-            18.4
+            14.4,
+            17.6
           ]
         ],
         "scroll": [
-          6.1,
-          15.4
-        ]
+          4.9,
+          14.4
+        ],
+        "marked": true
       },
-      "lcpMs": 881,
+      "lcpMs": 625,
       "video": "bench/results/videos/lottiefiles-off.webm",
       "sliProbe": 0
     },
@@ -1237,7 +1244,7 @@
       "url": "https://lottiefiles.com/",
       "condition": "on",
       "ok": true,
-      "domContentLoadedMs": 671,
+      "domContentLoadedMs": 327,
       "phases": {
         "idle": [
           [
@@ -1245,21 +1252,22 @@
             5.5
           ],
           [
-            14.8,
-            17.8
+            15.2,
+            18.4
           ]
         ],
         "scroll": [
           5.5,
-          14.8
-        ]
+          15.2
+        ],
+        "marked": true
       },
-      "lcpMs": 1081,
+      "lcpMs": 630,
       "sli": {
         "before": {
-          "score": 10,
+          "score": 0,
           "breakdown": {
-            "continuous": 10,
+            "continuous": 0,
             "autoMedia": 0,
             "scrollLinked": 0,
             "autoAdvance": 0,
@@ -1277,8 +1285,8 @@
           }
         },
         "beforeObservation": {
-          "infiniteAnimations": 4,
-          "infiniteAnimationArea": 0.007220299752504313,
+          "infiniteAnimations": 0,
+          "infiniteAnimationArea": 0,
           "autoplayingVideos": 0,
           "animatedImages": 0,
           "autoMediaArea": 0,
@@ -1311,24 +1319,25 @@
       "url": "https://swiperjs.com/",
       "condition": "off",
       "ok": true,
-      "domContentLoadedMs": 1477,
+      "domContentLoadedMs": 799,
       "phases": {
         "idle": [
           [
-            34.9,
-            38.9
+            8.8,
+            12.8
           ],
           [
-            48.4,
-            51.4
+            22.6,
+            25.8
           ]
         ],
         "scroll": [
-          38.9,
-          48.4
-        ]
+          12.8,
+          22.6
+        ],
+        "marked": true
       },
-      "lcpMs": 1316,
+      "lcpMs": 700,
       "video": "bench/results/videos/swiper-off.webm",
       "sliProbe": 0
     },
@@ -1337,24 +1346,25 @@
       "url": "https://swiperjs.com/",
       "condition": "on",
       "ok": true,
-      "domContentLoadedMs": 1684,
+      "domContentLoadedMs": 658,
       "phases": {
         "idle": [
           [
-            20.4,
-            24.4
+            4.4,
+            8.4
           ],
           [
-            33,
-            36
+            17.3,
+            20.5
           ]
         ],
         "scroll": [
-          24.4,
-          33
-        ]
+          8.4,
+          17.3
+        ],
+        "marked": true
       },
-      "lcpMs": 1236,
+      "lcpMs": 452,
       "sli": {
         "before": {
           "score": 0,
@@ -1411,24 +1421,25 @@
       "url": "https://www.tesla.com/",
       "condition": "off",
       "ok": true,
-      "domContentLoadedMs": 424,
+      "domContentLoadedMs": 471,
       "phases": {
         "idle": [
           [
-            0.5,
-            4.5
+            0.7,
+            4.7
           ],
           [
-            13.8,
-            16.8
+            14.2,
+            17.4
           ]
         ],
         "scroll": [
-          4.5,
-          13.8
-        ]
+          4.7,
+          14.2
+        ],
+        "marked": true
       },
-      "lcpMs": 436,
+      "lcpMs": 496,
       "video": "bench/results/videos/tesla-off.webm",
       "sliProbe": 0
     },
@@ -1437,24 +1448,25 @@
       "url": "https://www.tesla.com/",
       "condition": "on",
       "ok": true,
-      "domContentLoadedMs": 433,
+      "domContentLoadedMs": 370,
       "phases": {
         "idle": [
           [
-            0.6,
-            4.6
+            0.7,
+            4.7
           ],
           [
-            13.9,
-            16.9
+            14.2,
+            17.3
           ]
         ],
         "scroll": [
-          4.6,
-          13.9
-        ]
+          4.7,
+          14.2
+        ],
+        "marked": true
       },
-      "lcpMs": 448,
+      "lcpMs": 400,
       "sli": {
         "before": {
           "score": 0,
@@ -1511,24 +1523,25 @@
       "url": "https://www.nike.com/",
       "condition": "off",
       "ok": true,
-      "domContentLoadedMs": 3720,
+      "domContentLoadedMs": 1971,
       "phases": {
         "idle": [
           [
-            32,
-            36
+            12.7,
+            16.7
           ],
           [
-            44.2,
-            47.2
+            25.7,
+            28.9
           ]
         ],
         "scroll": [
-          36,
-          44.2
-        ]
+          16.7,
+          25.7
+        ],
+        "marked": true
       },
-      "lcpMs": 5844,
+      "lcpMs": 3716,
       "video": "bench/results/videos/nike-off.webm",
       "sliProbe": 0
     },
@@ -1537,24 +1550,25 @@
       "url": "https://www.nike.com/",
       "condition": "on",
       "ok": true,
-      "domContentLoadedMs": 3647,
+      "domContentLoadedMs": 2222,
       "phases": {
         "idle": [
           [
-            21.7,
-            25.7
+            7.5,
+            11.5
           ],
           [
-            34.1,
-            37.1
+            20.1,
+            23.2
           ]
         ],
         "scroll": [
-          25.7,
-          34.1
-        ]
+          11.5,
+          20.1
+        ],
+        "marked": true
       },
-      "lcpMs": 5140,
+      "lcpMs": 3156,
       "sli": {
         "before": {
           "score": 0,
@@ -1611,50 +1625,52 @@
       "url": "https://www.airbnb.com/",
       "condition": "off",
       "ok": true,
-      "domContentLoadedMs": 4429,
+      "domContentLoadedMs": 1514,
       "phases": {
         "idle": [
           [
-            4.9,
-            8.9
+            4.1,
+            8.1
           ],
           [
-            18.1,
-            21.1
+            17.7,
+            20.8
           ]
         ],
         "scroll": [
-          8.9,
-          18.1
-        ]
+          8.1,
+          17.7
+        ],
+        "marked": true
       },
-      "lcpMs": 7964,
+      "lcpMs": 3848,
       "video": "bench/results/videos/airbnb-off.webm",
-      "sliProbe": 0
+      "sliProbe": 23
     },
     {
       "site": "airbnb",
       "url": "https://www.airbnb.com/",
       "condition": "on",
       "ok": true,
-      "domContentLoadedMs": 4991,
+      "domContentLoadedMs": 1502,
       "phases": {
         "idle": [
           [
-            9.8,
-            13.8
+            2.8,
+            6.8
           ],
           [
-            23.1,
-            26.1
+            18,
+            21.2
           ]
         ],
         "scroll": [
-          13.8,
-          23.1
-        ]
+          6.8,
+          18
+        ],
+        "marked": true
       },
-      "lcpMs": 5016,
+      "lcpMs": 2372,
       "sli": {
         "before": {
           "score": 8,
@@ -1711,24 +1727,25 @@
       "url": "https://www.bbc.com/news",
       "condition": "off",
       "ok": true,
-      "domContentLoadedMs": 5880,
+      "domContentLoadedMs": 1722,
       "phases": {
         "idle": [
           [
-            10.5,
-            14.5
+            5.2,
+            9.2
           ],
           [
-            23.7,
-            26.7
+            18.4,
+            21.5
           ]
         ],
         "scroll": [
-          14.5,
-          23.7
-        ]
+          9.2,
+          18.4
+        ],
+        "marked": true
       },
-      "lcpMs": 1988,
+      "lcpMs": 1432,
       "video": "bench/results/videos/bbc-news-off.webm",
       "sliProbe": 0
     },
@@ -1737,24 +1754,25 @@
       "url": "https://www.bbc.com/news",
       "condition": "on",
       "ok": true,
-      "domContentLoadedMs": 6441,
+      "domContentLoadedMs": 1560,
       "phases": {
         "idle": [
           [
-            10.4,
-            14.4
+            4.4,
+            8.4
           ],
           [
-            23.5,
-            26.5
+            17.5,
+            20.7
           ]
         ],
         "scroll": [
-          14.4,
-          23.5
-        ]
+          8.4,
+          17.5
+        ],
+        "marked": true
       },
-      "lcpMs": 2604,
+      "lcpMs": 1204,
       "sli": {
         "before": {
           "score": 0,
@@ -1811,24 +1829,25 @@
       "url": "https://www.theverge.com/",
       "condition": "off",
       "ok": true,
-      "domContentLoadedMs": 2738,
+      "domContentLoadedMs": 1333,
       "phases": {
         "idle": [
           [
-            19.7,
-            23.7
+            11.5,
+            15.5
           ],
           [
-            32.5,
-            35.5
+            25,
+            28.3
           ]
         ],
         "scroll": [
-          23.7,
-          32.5
-        ]
+          15.5,
+          25
+        ],
+        "marked": true
       },
-      "lcpMs": 1840,
+      "lcpMs": 1480,
       "video": "bench/results/videos/the-verge-off.webm",
       "sliProbe": 0
     },
@@ -1837,24 +1856,25 @@
       "url": "https://www.theverge.com/",
       "condition": "on",
       "ok": true,
-      "domContentLoadedMs": 9371,
+      "domContentLoadedMs": 1796,
       "phases": {
         "idle": [
           [
-            30.7,
-            34.7
+            17,
+            21
           ],
           [
-            43.3,
-            46.3
+            31.2,
+            34.4
           ]
         ],
         "scroll": [
-          34.7,
-          43.3
-        ]
+          21,
+          31.2
+        ],
+        "marked": true
       },
-      "lcpMs": 2368,
+      "lcpMs": 1760,
       "sli": {
         "before": {
           "score": 0,
@@ -1911,50 +1931,52 @@
       "url": "https://github.com/",
       "condition": "off",
       "ok": true,
-      "domContentLoadedMs": 3545,
+      "domContentLoadedMs": 1742,
       "phases": {
         "idle": [
           [
-            3.6,
-            7.6
+            2.1,
+            6.1
           ],
           [
-            17.8,
-            20.8
+            16.4,
+            19.6
           ]
         ],
         "scroll": [
-          7.6,
-          17.8
-        ]
+          6.1,
+          16.4
+        ],
+        "marked": true
       },
-      "lcpMs": 1660,
+      "lcpMs": 1316,
       "video": "bench/results/videos/github-off.webm",
-      "sliProbe": 18
+      "sliProbe": 20
     },
     {
       "site": "github",
       "url": "https://github.com/",
       "condition": "on",
       "ok": true,
-      "domContentLoadedMs": 7352,
+      "domContentLoadedMs": 1688,
       "phases": {
         "idle": [
           [
-            7.6,
-            11.6
+            2.1,
+            6.1
           ],
           [
-            20,
-            23
+            14.5,
+            17.7
           ]
         ],
         "scroll": [
-          11.6,
-          20
-        ]
+          6.1,
+          14.5
+        ],
+        "marked": true
       },
-      "lcpMs": 1844,
+      "lcpMs": 1144,
       "sli": {
         "before": {
           "score": 0,
@@ -2011,24 +2033,25 @@
       "url": "https://developer.mozilla.org/en-US/",
       "condition": "off",
       "ok": true,
-      "domContentLoadedMs": 951,
+      "domContentLoadedMs": 587,
       "phases": {
         "idle": [
           [
-            1.6,
-            5.6
+            1,
+            5
           ],
           [
-            14.5,
-            17.5
+            14.2,
+            17.4
           ]
         ],
         "scroll": [
-          5.6,
-          14.5
-        ]
+          5,
+          14.2
+        ],
+        "marked": true
       },
-      "lcpMs": 2572,
+      "lcpMs": 1252,
       "video": "bench/results/videos/mdn-off.webm",
       "sliProbe": 0
     },
@@ -2037,24 +2060,25 @@
       "url": "https://developer.mozilla.org/en-US/",
       "condition": "on",
       "ok": true,
-      "domContentLoadedMs": 913,
+      "domContentLoadedMs": 681,
       "phases": {
         "idle": [
           [
-            1.4,
-            5.4
+            1.5,
+            5.5
           ],
           [
-            14.3,
-            17.3
+            14.7,
+            17.8
           ]
         ],
         "scroll": [
-          5.4,
-          14.3
-        ]
+          5.5,
+          14.7
+        ],
+        "marked": true
       },
-      "lcpMs": 1700,
+      "lcpMs": 1380,
       "sli": {
         "before": {
           "score": 0,
@@ -2111,24 +2135,25 @@
       "url": "https://en.wikipedia.org/wiki/Special:Random",
       "condition": "off",
       "ok": true,
-      "domContentLoadedMs": 1222,
+      "domContentLoadedMs": 1378,
       "phases": {
         "idle": [
           [
-            1.8,
-            5.8
+            1.9,
+            5.9
           ],
           [
-            14.7,
-            17.7
+            15.2,
+            18.4
           ]
         ],
         "scroll": [
-          5.8,
-          14.7
-        ]
+          5.9,
+          15.2
+        ],
+        "marked": true
       },
-      "lcpMs": 1240,
+      "lcpMs": 1400,
       "video": "bench/results/videos/wikipedia-off.webm",
       "sliProbe": 0
     },
@@ -2137,24 +2162,25 @@
       "url": "https://en.wikipedia.org/wiki/Special:Random",
       "condition": "on",
       "ok": true,
-      "domContentLoadedMs": 11664,
+      "domContentLoadedMs": 1405,
       "phases": {
         "idle": [
           [
-            18.1,
-            22.1
+            2,
+            6
           ],
           [
-            31.1,
-            34.1
+            15.4,
+            18.5
           ]
         ],
         "scroll": [
-          22.1,
-          31.1
-        ]
+          6,
+          15.4
+        ],
+        "marked": true
       },
-      "lcpMs": 16656,
+      "lcpMs": 1732,
       "sli": {
         "before": {
           "score": 0,

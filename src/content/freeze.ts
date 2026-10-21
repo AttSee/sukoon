@@ -11,6 +11,8 @@
  */
 import { FLASH_DIM_ATTR } from '../shared/calm-css';
 import { BRIDGE, emit } from '../shared/messages';
+import { dirOf, pageStrings } from '../shared/page-strings';
+import type { Locale } from '../shared/settings';
 
 const Z_TOP = '2147483647';
 
@@ -101,6 +103,7 @@ function createHost(): { host: HTMLElement; root: ShadowRoot } {
 }
 
 export class PanicFreeze {
+  private locale: Locale = 'en';
   private state: {
     host: HTMLElement;
     frozen: Frozen;
@@ -119,6 +122,10 @@ export class PanicFreeze {
 
   constructor(onLocalRelease?: () => void) {
     this.onLocalRelease = onLocalRelease;
+  }
+
+  setLocale(locale: Locale): void {
+    this.locale = locale;
   }
 
   get active(): boolean {
@@ -142,11 +149,14 @@ export class PanicFreeze {
       return;
     }
     const { host, root: shadow } = createHost();
+    host.setAttribute('dir', dirOf(this.locale));
+    host.setAttribute('lang', this.locale);
     const layer = document.createElement('div');
     layer.className = 'layer';
     layer.setAttribute('role', 'dialog');
     layer.setAttribute('aria-modal', 'true');
-    layer.setAttribute('aria-label', 'Sukoon: page frozen');
+    const copy = pageStrings(this.locale);
+    layer.setAttribute('aria-label', copy.freeze.aria);
     const canvas = document.createElement('canvas');
     canvas.setAttribute('aria-hidden', 'true');
     const dim = document.createElement('div');
@@ -159,10 +169,10 @@ export class PanicFreeze {
       el.textContent = key;
       return el;
     };
-    text.append('Page frozen. Press ', kbd('Esc'), ' or ', kbd('Alt'), '+', kbd('Shift'), '+', kbd('S'), ' to release.');
+    text.append(copy.freeze.textBefore, kbd('Esc'), ' · ', kbd('Alt'), '+', kbd('Shift'), '+', kbd('S'), copy.freeze.textAfter);
     const button = document.createElement('button');
     button.type = 'button';
-    button.textContent = 'Release';
+    button.textContent = copy.freeze.release;
     button.addEventListener('click', () => this.releaseLocally());
     panel.append(text, button);
     layer.append(canvas, dim, panel);
@@ -197,6 +207,7 @@ export class PanicFreeze {
 
 /** M9 response: dim moving pictures, stop media and animation, until the user restores. */
 export class FlashDimmer {
+  private locale: Locale = 'en';
   private state: { host: HTMLElement | null; frozen: Frozen } | null = null;
   hits = 0;
 
@@ -205,6 +216,10 @@ export class FlashDimmer {
 
   constructor(onLocalRestore?: () => void) {
     this.onLocalRestore = onLocalRestore;
+  }
+
+  setLocale(locale: Locale): void {
+    this.locale = locale;
   }
 
   get dimmed(): boolean {
@@ -221,14 +236,17 @@ export class FlashDimmer {
     if (window === window.top) {
       const created = createHost();
       host = created.host;
+      host.setAttribute('dir', dirOf(this.locale));
+      host.setAttribute('lang', this.locale);
+      const copy = pageStrings(this.locale);
       const panel = document.createElement('div');
       panel.className = 'panel banner';
       panel.setAttribute('role', 'alert');
       const text = document.createElement('span');
-      text.textContent = 'Sukoon detected rapid flashing and dimmed moving content.';
+      text.textContent = copy.flashBanner.text;
       const button = document.createElement('button');
       button.type = 'button';
-      button.textContent = 'Restore';
+      button.textContent = copy.flashBanner.restore;
       button.addEventListener('click', () => {
         this.restore();
         this.onLocalRestore?.();

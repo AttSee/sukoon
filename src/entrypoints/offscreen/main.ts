@@ -18,12 +18,16 @@ const HEARTBEAT_MS = 15_000;
 let stream: MediaStream | null = null;
 let stopLoop: (() => void) | null = null;
 let heartbeat = 0;
+let generation = 0;
 
 browser.runtime.onMessage.addListener((raw: unknown, _sender, sendResponse: (r: unknown) => void) => {
   const msg = raw as ToOffscreen;
   if (msg.type === 'offscreen:start') {
-    void start(msg.streamId, msg.tabId);
-    sendResponse(true); // acknowledges that this document is up
+    void start(msg.streamId, msg.tabId).then(
+      () => sendResponse(true),
+      (error: unknown) => sendResponse({ error: String(error) }),
+    );
+    return true; // respond only once capture and analysis have initialized
   } else if (msg.type === 'offscreen:stop') {
     stop();
     sendResponse(true);
@@ -37,7 +41,7 @@ function send(message: ToBackground) {
 
 async function start(streamId: string, tabId: number): Promise<void> {
   stop();
-  heartbeat = window.setInterval(() => send({ type: 'flash-guard:heartbeat', tabId, t: Date.now() }), HEARTBEAT_MS);
+  const current = generation;
   const constraints = {
     audio: false,
     video: {
@@ -50,9 +54,17 @@ async function start(streamId: string, tabId: number): Promise<void> {
       },
     },
   } as unknown as MediaStreamConstraints;
-  stream = await navigator.mediaDevices.getUserMedia(constraints);
+  const captured = await navigator.mediaDevices.getUserMedia(constraints);
+  if (current !== generation) {
+    for (const track of captured.getTracks()) track.stop();
+    throw new Error('Flash Guard start was cancelled');
+  }
+  stream = captured;
   const track = stream.getVideoTracks()[0];
-  if (!track) return;
+  if (!track) {
+    stop();
+    throw new Error('Tab capture returned no video track');
+  }
   track.addEventListener('ended', () => {
     stop();
     send({ type: 'flash-guard:ended' });
@@ -61,7 +73,10 @@ async function start(streamId: string, tabId: number): Promise<void> {
   const detector = new FlashDetector();
   const canvas = new OffscreenCanvas(W, H);
   const ctx = canvas.getContext('2d', { willReadFrequently: true });
-  if (!ctx) return;
+  if (!ctx) {
+    stop();
+    throw new Error('Flash Guard canvas is unavailable');
+  }
 
   let pending: FlashFrameResult | null = null;
   let lastReport = 0;
@@ -99,26 +114,49 @@ async function start(streamId: string, tabId: number): Promise<void> {
       running = false;
       void reader.cancel().catch(() => {});
     };
-    while (running) {
-      const { value: frame, done } = await reader.read();
-      if (done || !frame) break;
-      analyse(frame, frame.timestamp / 1000);
-      frame.close();
-    }
+    const readFrames = async () => {
+      try {
+        while (running) {
+          const { value: frame, done } = await reader.read();
+          if (done || !frame) break;
+          try {
+            if (running) analyse(frame, frame.timestamp / 1000);
+          } finally {
+            frame.close();
+          }
+        }
+      } finally {
+        if (current === generation) {
+          stop();
+          send({ type: 'flash-guard:ended' });
+        }
+      }
+    };
+    void readFrames().catch(() => {});
   } else {
     const video = document.createElement('video');
     video.muted = true;
     video.srcObject = stream;
-    await video.play();
+    try {
+      await video.play();
+    } catch (error) {
+      if (current === generation) stop();
+      throw error;
+    }
+    if (current !== generation) throw new Error('Flash Guard start was cancelled');
     const timer = setInterval(() => running && analyse(video, performance.now()), 1000 / 30);
     stopLoop = () => {
       running = false;
       clearInterval(timer);
     };
   }
+  if (current === generation) {
+    heartbeat = window.setInterval(() => send({ type: 'flash-guard:heartbeat', tabId, t: Date.now() }), HEARTBEAT_MS);
+  }
 }
 
 function stop(): void {
+  generation++;
   clearInterval(heartbeat);
   stopLoop?.();
   stopLoop = null;

@@ -1,6 +1,6 @@
 {
   "name": "sukoon",
-  "version": "1.0.0",
+  "version": "0.4.0",
   "description": "Calm motion, flashes and hijacked scrolling on any website \u2014 locally, with reproducible evidence.",
   "private": true,
   "type": "module",
@@ -22,6 +22,7 @@
     "build": "wxt build",
     "build:firefox": "wxt build -b firefox",
     "zip": "wxt zip && wxt zip -b firefox",
+    "pack": "npm run zip && node scripts/print-install.ts",
     "postinstall": "wxt prepare",
     "typecheck": "tsc --noEmit",
     "check": "npm run typecheck && npm test && npm run build && npm run build:firefox",

@@ -15,6 +15,12 @@
  *   text  : missing when on < 90% of off and the loss exceeds 200 characters
  *   images: missing when off has ≥ 5 and on < 80% of off
  *
+ * A break must reproduce to count. Some pages serve very different content
+ * from one load to the next (nike.com showed 29 visible images in one load
+ * without Sukoon and 7 in the next), so one pair of loads can look broken by
+ * chance. A site that looks broken is loaded again in both conditions and is
+ * reported broken only if the second pair breaks too; the notes say which.
+ *
  * Rows are merged into bench/breakage.csv after every site (manual rows for
  * other sites are kept, and an interrupted run keeps what it finished);
  * automated notes start with "auto:". A page that never answers is abandoned
@@ -208,6 +214,21 @@ function verdict(site: Site, off: Probe, on: Probe): Row {
   return { site: site.name, content: textMissing || imagesMissing, interaction: scrollBroken || formBroken || navBroken, notes };
 }
 
+const isBroken = (r: Row) => r.content || r.interaction;
+const loadFailed = (r: Row) => r.notes.startsWith('auto: load failed');
+
+/**
+ * A break has to show up on a second pair of loads before it is reported. A failed confirming load proves nothing,
+ * so the first verdict then stands.
+ */
+async function confirmed(first: Row, again: () => Promise<Row>): Promise<Row> {
+  if (!isBroken(first)) return first;
+  const second = await again();
+  if (loadFailed(second)) return { ...first, notes: `${first.notes}; the confirming loads failed` };
+  if (isBroken(second)) return { ...first, notes: `${first.notes}; reproduced on a second pair of loads` };
+  return { ...second, notes: `${second.notes}; a first pair looked broken (${first.notes.replace(/^auto: /, '')}) but did not reproduce` };
+}
+
 /** Merge into the CSV: replace rows for the sites checked now, keep manual/previous rows for the rest. */
 function writeCsv(rows: Row[]): void {
   const bySite = new Map<string, string>();
@@ -238,7 +259,9 @@ try {
     process.stdout.write(`${site.name} … `);
     const off = await probeSite(offContext, site);
     const on = await probeSite(onContext, site);
-    const row = verdict(site, off, on);
+    const row = await confirmed(verdict(site, off, on), async () =>
+      verdict(site, await probeSite(offContext, site), await probeSite(onContext, site)),
+    );
     rows.push(row);
     writeCsv(rows); // after every site: an interrupted run keeps what it finished
     console.log(

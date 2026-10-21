@@ -18,6 +18,16 @@ describe('settings', () => {
     });
   });
 
+  it('rejects invalid imported feature flags while preserving boolean overrides', () => {
+    const settings = normalizeSettings({
+      overrides: { calmCss: 'false', adapters: null, mediaGuard: false, scrollGuard: true, unknown: true },
+    });
+    expect(settings.overrides).toEqual({ mediaGuard: false, scrollGuard: true });
+    expect(resolveFeatures(settings).calmCss).toBe(true);
+    expect(resolveFeatures(settings).adapters).toBe(true);
+    expect(normalizeSettings({ overrides: [true, false] }).overrides).toEqual({});
+  });
+
   it('applies overrides on top of the mode preset', () => {
     const s = { ...DEFAULT_SETTINGS, mode: 'focus' as const, overrides: { scrollGuard: true } };
     expect(resolveFeatures(s)).toEqual({ ...MODE_PRESETS.focus, scrollGuard: true });
@@ -43,6 +53,17 @@ describe('settings', () => {
       '*://example.com/*',
       '*://127.0.0.1/*',
     ]);
+  });
+
+  it('keeps locale and pageChip and rejects junk', () => {
+    expect(DEFAULT_SETTINGS.locale).toBe('en');
+    expect(DEFAULT_SETTINGS.pageChip).toBe('briefly');
+    expect(normalizeSettings({ locale: 'ar', pageChip: 'on' })).toMatchObject({ locale: 'ar', pageChip: 'on' });
+    expect(normalizeSettings({ locale: 'fr', pageChip: 'always' })).toMatchObject({ locale: 'en', pageChip: 'briefly' });
+    expect(pageConfigFor({ ...DEFAULT_SETTINGS, locale: 'ar', pageChip: 'off' }, 'example.com')).toMatchObject({
+      locale: 'ar',
+      pageChip: 'off',
+    });
   });
 
   it('suggests a mode from the two welcome questions', () => {

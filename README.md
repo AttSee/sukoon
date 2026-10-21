@@ -52,20 +52,40 @@ differs in four ways that no single free tool combines:
 Regenerate them from the built extension with `npm run screenshots` (1280×800, the store format). The listing copy
 and permission justifications for both stores are in [`docs/store-listing.md`](docs/store-listing.md).
 
-## Install (development build)
+## Install in your browser (production)
 
 Requirements: Node 24+, npm. TypeScript is 7.0 (the native compiler).
 
 ```bash
-npm install
-npm run build            # Chrome / Edge → .output/chrome-mv3
-npm run build:firefox    # Firefox 140+ → .output/firefox-mv3
-npm run zip              # store-ready zips for both, plus the Firefox source archive
+npm ci
+npm run pack             # production Chrome + Firefox builds, store zips, then prints the folders to load
 ```
 
-Chrome: open `chrome://extensions`, enable Developer mode, **Load unpacked**, pick `.output/chrome-mv3`.
-Firefox: open `about:debugging#/runtime/this-firefox`, **Load Temporary Add-on**, pick `.output/firefox-mv3/manifest.json`,
-then open Sukoon's settings and press **Allow on all sites** (Firefox makes host access opt-in).
+That writes a minified production build (not the `npm run dev` watch build):
+
+| Browser | What to load |
+| --- | --- |
+| **Chrome / Brave / Edge** | `release/chrome` |
+| **Firefox 140+** | `release/firefox/manifest.json` |
+
+Chrome, Brave or Edge: open `chrome://extensions` (Brave: `brave://extensions`), turn on **Developer mode**,
+**Load unpacked**, pick `release/chrome`.
+
+Firefox: open `about:debugging#/runtime/this-firefox`, **Load Temporary Add-on**, pick
+`release/firefox/manifest.json`, then open Sukoon's settings and press **Allow on all sites**
+(Firefox makes host access opt-in). A temporary add-on lasts until Firefox is quit.
+
+Store-ready zips land in `.output/` (`sukoon-0.4.0-chrome.zip`, `sukoon-0.4.0-firefox.zip`, plus the Firefox
+source archive). `npm run pack` also copies both builds and all three archives into the visible `release/` folder,
+with installation instructions and `SHA256SUMS`. If already installed, reload the extension and existing website tabs.
+You still load the unpacked folder above for local use; the zips are what the stores accept.
+
+```bash
+npm run build            # Chrome / Edge only → .output/chrome-mv3
+npm run build:firefox    # Firefox only → .output/firefox-mv3
+npm run zip              # the same zips as `pack`, without the install reminder
+npm run dev              # live-reload development build — do not submit this
+```
 
 The test page used by every check: `npm run test-page`, then open <http://127.0.0.1:4173/>.
 
@@ -112,7 +132,7 @@ bench/           evidence bench (record → analyse → report)
 | 2 | **Reduced-motion switch** | Many sites already ship a calm version behind `prefers-reduced-motion` that nobody sees. Sukoon cannot change the query's value, but it rewrites the query itself: `reduce` becomes an always-true condition and `no-preference` an always-false one, in CSSOM rules (recursing into `@supports`, `@layer`, `@container`, `@import`), `<link media>`, `<source media>` and `window.matchMedia`. Cross-origin stylesheets are re-read by the background, and only their reduced-motion rules are extracted and adopted with the right base URL. Libraries that ask `matchMedia` before animating switch themselves off. |
 | 3 | **Deep coverage** | `attachShadow` is patched in the MAIN world so every shadow root adopts the calm sheet; the `adoptedStyleSheets` setter keeps it attached when frameworks such as Lit replace the list. Declarative shadow DOM is swept after parsing. All frames, including `about:blank`, `srcdoc` and `blob:` frames, are covered. |
 | 4 | **Library adapters** | `document.getAnimations()`: finite Web Animations finish, infinite ones return to their first frame and pause. SVG SMIL (`pauseAnimations`), `<marquee>`, AOS/WOW/SAL reveal classes, GSAP (finite tweens finish, loops park, ScrollTrigger settles), Lottie, Swiper, Slick, Owl and Flickity autoplay. The adapters sit on top of the generic protection; if a library changes, protection does not collapse. |
-| 5 | **Scroll guard** | (a) CSS: no smooth scrolling or fixed backgrounds. (b) `scrollTo`, `scrollBy` and `scrollIntoView` become instant. (c) A wheel listener registered first on `window` (capture phase, at `document_start`) engages only when a smooth-scroll hijacker is present and the page scrolls natively, and then calls `stopImmediatePropagation()` so the device's own scrolling returns. Detection runs at the start of every wheel burst and never latches: Lenis is detected by its `lenis` class; any other page-wide hijacker by cancelling a synthetic zero-delta wheel event dispatched on `<body>`, which a map, chart or slider listening on its own element never sees. Virtual scrollers (`overflow: hidden`) are left alone, or the page would freeze. (d) Vestibular mode: layers whose inline transform value changes three times within 400 ms of one scroll burst (scroll-synced writes, not a 4 Hz progress bar) are pinned with a stylesheet rule that beats the library's next inline write. DOM observation only runs while scrolling. |
+| 5 | **Scroll guard** | (a) CSS: no smooth scrolling or fixed backgrounds. (b) `scrollTo`, `scrollBy` and `scrollIntoView` become instant. (c) A wheel listener registered first on `window` (capture phase, at `document_start`) engages only when a smooth-scroll hijacker is present and the page scrolls natively, and then calls `stopImmediatePropagation()` so the device's own scrolling returns. Over a likely widget (a canvas, video, SVG, map, chart or slider) the wheel is let through to the widget on the way in and stopped on its way back up, by a second listener that is also first in the bubble phase on `window`, so a hijacker listening there (Lenis, Locomotive Scroll) still never sees it. Detection runs at the start of every wheel burst and never latches: Lenis is detected by its `lenis` class; any other page-wide hijacker by cancelling a synthetic zero-delta wheel event dispatched on `<body>`, which a map, chart or slider listening on its own element never sees. Virtual scrollers (`overflow: hidden`) are left alone, or the page would freeze. (d) Vestibular mode: layers whose inline transform value changes three times within 400 ms of one scroll burst (scroll-synced writes, not a 4 Hz progress bar) are pinned with a stylesheet rule that beats the library's next inline write. DOM observation only runs while scrolling. |
 | 6 | **Media guard** | Animated images use the browser's own switch: `accessibilityFeatures.animationPolicy` in Chrome, `browserSettings.imageAnimationBehavior` in Firefox (browser-wide, not per site). `HTMLMediaElement.play()` rejects with `NotAllowedError`, exactly like the browser's own autoplay block, unless `navigator.userActivation.isActive`; the `autoplay` attribute is stripped while the page is parsed; a capture-phase `play` listener catches anything else. Audio is not affected. |
 | 7 | **Panic freeze** | `Alt+Shift+S` (or the popup button): the background takes a screenshot of the tab, which covers the page, dimmed, from a closed shadow root; scrolling locks; media, animations and SMIL pause; `requestAnimationFrame` callbacks are held in the MAIN world, which also stops canvas and WebGL. The same shortcut, Esc or the Release button undoes it. The top frame owns the state and every embedded frame follows it, so Esc releases the embeds too. The screenshot is decoded locally into a canvas, so page CSP never blocks it. |
 | 8 | **Sensory Load Index** | A guide with published weights (below). The popup shows the page *as built* next to the page *now*, with the full breakdown. "As built" is measured by lifting the calm layer for a single synchronous task, so nothing is painted in between. |
@@ -187,7 +207,11 @@ Chrome-only.
 
 The bench records every site twice, without and with Sukoon (Vestibular mode), under an identical 15-second script at
 1280×720 in Playwright's bundled Chromium (branded Chrome and Edge no longer load unpacked extensions from the command
-line): 4 s still, scripted wheel scrolling, 3 s still.
+line): 4 s still, scripted wheel scrolling, 3 s still. Every phase boundary is marked on screen (a 128 px black/white
+square in a corner swaps its tones and stays) and the analysis locates the windows from those changes, because the recording's
+timeline is offset from the wall clock: it starts at the first captured frame, up to 1.6 s after the page was
+created on heavy sites, and frames only arrive when the page repaints. Wall-clock windows had let the wheel start
+leak into the idle measurement.
 
 ```bash
 python3 -m venv bench/.venv && bench/.venv/bin/pip install -r bench/requirements.txt   # once
@@ -221,7 +245,12 @@ npm run typecheck    # TypeScript 7
 npm test             # Vitest: media-query rewrite, SLI, flash detector, settings, calm CSS
 npm run check        # typecheck + unit tests + both builds, in one go (what CI runs first)
 npm run test:e2e     # Playwright: the built extension against the test page, plus axe-core on the popup and settings
+LIVE=1 npx playwright test e2e/live-sites.spec.ts
+                     # the same checks on public pages famous for motion (Lenis, Locomotive, Apple, GSAP, Stripe, Swiper)
 ```
+
+End-to-end tests start their own fixture server on port 43173 and refuse to reuse an existing server.
+Set `SUKOON_TEST_PORT` to choose another port if needed.
 
 The same steps run on every push and pull request through [GitHub Actions](.github/workflows/ci.yml); on the default
 branch the workflow also uploads the store-ready zips as build artifacts.
@@ -247,6 +276,12 @@ this test uses Chromium's `--allowlisted-extension-id` testing switch.
 ## Known trade-offs
 
 - **Loading spinners stop.** They finish like every other loop. Exclude the site with one click if that matters.
+- **Canvas and WebGL scenes keep moving unless the site honours `prefers-reduced-motion`.** They are drawn with
+  `requestAnimationFrame`, which Sukoon holds only during the panic freeze: holding it everywhere would also stop maps,
+  games and players, and would freeze scripted reveals half-way instead of finishing them. A site that checks the query
+  stops on its own, because Sukoon turns the query on (Stripe's WebGL gradient does: idle motion 1.13% of the screen
+  with the switch off, 0% with it on). A site that does not keeps drifting (the hero scene on the Lenis homepage).
+  `Alt+Shift+S` stops those too.
 - **The animated-image policy is browser-wide**, because that is how the browsers expose it.
 - **Autoplay within about 5 seconds of a click is allowed**, because the browser still counts it as a user gesture.
 - **Sites that move content horizontally with scroll** (scroll-jacked galleries) may lose that content when parallax is

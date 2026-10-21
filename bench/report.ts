@@ -12,7 +12,14 @@ const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const RESULTS = `${ROOT}bench/results`;
 
 interface Analysis {
-  motionEnergy: { idle: number; scroll: number; all: number; frames: number };
+  motionEnergy: {
+    idle: number;
+    scroll: number;
+    all: number;
+    frames: number;
+    /** How the phase windows were located: on-screen markers, or the wall clock (older recordings, marker hidden). */
+    phaseSource?: 'markers' | 'wall-clock' | 'none';
+  };
   iris: {
     overall: string;
     luminanceFailFrames: number;
@@ -81,7 +88,12 @@ const rows: Row[] = sites.map((site) => ({
 const complete = rows.filter((r) => r.off?.ok && r.on?.ok && r.aOff && r.aOn);
 
 const change = (on: number, off: number) => (off > 0 ? (on / off - 1) * 100 : Number.NaN);
-const idleChanges = complete.map((r) => change(r.aOn!.motionEnergy.idle, r.aOff!.motionEnergy.idle)).filter(Number.isFinite);
+/** Below this idle motion (0–255 scale) nothing moves on the page; a change ratio between two such values is noise. */
+const IDLE_FLOOR = 0.05;
+const moving = complete.filter((r) => r.aOff!.motionEnergy.idle >= IDLE_FLOOR);
+const idleChanges = moving.map((r) => change(r.aOn!.motionEnergy.idle, r.aOff!.motionEnergy.idle)).filter(Number.isFinite);
+const calmed = moving.filter((r) => r.aOn!.motionEnergy.idle < IDLE_FLOOR).length;
+const idleChange = (r: Row) => (r.aOff && r.aOn && r.aOff.motionEnergy.idle >= IDLE_FLOOR ? change(r.aOn.motionEnergy.idle, r.aOff.motionEnergy.idle) : Number.NaN);
 const scrollChanges = complete.map((r) => change(r.aOn!.motionEnergy.scroll, r.aOff!.motionEnergy.scroll)).filter(Number.isFinite);
 const dclDelta = complete.map((r) => (r.on!.domContentLoadedMs ?? 0) - (r.off!.domContentLoadedMs ?? 0));
 const lcpDelta = complete.filter((r) => r.on!.lcpMs && r.off!.lcpMs).map((r) => r.on!.lcpMs! - r.off!.lcpMs!);
@@ -92,6 +104,8 @@ const withSli = complete.filter((r) => r.off!.sliProbe !== undefined);
 const sliBefore = withSli.map((r) => r.off!.sliProbe!);
 const energyOff = withSli.map((r) => r.aOff!.motionEnergy.idle);
 const rho = withSli.length >= 3 ? spearman(sliBefore, energyOff) : Number.NaN;
+const analysed = Object.values(analysis);
+const marked = analysed.filter((a) => a.motionEnergy.phaseSource === 'markers').length;
 
 // ── breakage ───────────────────────────────────────────────────────────────
 let breakage = 'not checked yet — fill bench/breakage.csv using bench/breakage-checklist.md';
@@ -113,7 +127,7 @@ const table = [
   '| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |',
   ...rows.map((r) => {
     if (!(r.off?.ok && r.on?.ok)) return `| ${r.site} | failed: ${r.off?.error ?? r.on?.error ?? 'no recording'} |${' |'.repeat(13)}`;
-    const idle = r.aOff && r.aOn ? change(r.aOn.motionEnergy.idle, r.aOff.motionEnergy.idle) : Number.NaN;
+    const idle = idleChange(r);
     const sli = `${r.off.sliProbe ?? '—'} | ${r.on.sli?.after.score ?? '—'}`;
     return `| ${r.site} | ${fmt(r.aOff?.motionEnergy.idle, 3)} | ${fmt(r.aOn?.motionEnergy.idle, 3)} | ${pct(idle)} | ${fmt(r.aOff?.motionEnergy.scroll, 3)} | ${fmt(r.aOn?.motionEnergy.scroll, 3)} | ${irisFails(r.aOff) ?? '—'} | ${irisFails(r.aOn) ?? '—'} | ${r.off.domContentLoadedMs ?? '—'} | ${r.on.domContentLoadedMs ?? '—'} | ${r.off.lcpMs || '—'} | ${r.on.lcpMs || '—'} | ${sli} |`;
   }),
@@ -130,7 +144,10 @@ recorded once without and once with Sukoon (Vestibular mode). Reproduce with \`n
 | Measure | Result |
 | --- | --- |
 | Sites with both runs analysed | ${complete.length} of ${rows.length} |
-| Median change in motion while idle (motion nobody asked for) | ${pct(median(idleChanges))} |
+| Recordings whose phase windows were located by on-screen markers | ${marked} of ${analysed.length} |
+| Sites that move while idle without Sukoon (idle motion ≥ ${IDLE_FLOOR}) | ${moving.length} of ${complete.length} |
+| Median change in motion while idle on those sites (motion nobody asked for) | ${pct(median(idleChanges))} |
+| Of those, still with Sukoon (idle motion < ${IDLE_FLOOR}) | ${calmed} of ${moving.length} |
 | Median change in motion while scrolling | ${pct(median(scrollChanges))} |
 | Sites with IRIS flash failures | ${irisOff} without Sukoon → ${irisOn} with Sukoon |
 | Median DOMContentLoaded cost | ${fmt(median(dclDelta), 0)} ms |
@@ -147,7 +164,13 @@ ${table}
 - **Idle motion**: mean absolute luminance difference between consecutive frames at 160×90 (0–255 scale; per-pixel
   changes under 4 are treated as video-codec noise), during the
   4 s before scrolling and the 3 s after it. Nothing the user does moves the screen then, so this is motion nobody
-  asked for (including smooth-scroll inertia after the wheel stops).
+  asked for (including smooth-scroll inertia after the wheel stops). The windows are located by markers the
+  script shows on screen (a 128 px two-tone square in the top-left corner that swaps its tones at every boundary
+  and stays; the frames on which it changes are left out), because the recording's timeline is offset from the wall clock: it
+  starts at the first captured frame, up to 1.6 s after the page was created on heavy sites, and frames only arrive
+  when the page repaints. A recording without markers falls back to wall-clock windows. A site whose idle motion
+  without Sukoon is under ${IDLE_FLOOR} does not move while idle; its row keeps the numbers, but its change is shown as
+  "—" and left out of the median, because a ratio between two values at the noise floor says nothing.
 - **Scroll motion**: the same measure while the wheel is turning. It includes the scrolling itself, so it never
   reaches zero, and native scrolling can move further than a hijacked one; read it as context, not as a score.
 - **IRIS fail frames**: frames that EA's IRIS (Python port \`iris-pse-detection\`) marks as luminance or red flash
